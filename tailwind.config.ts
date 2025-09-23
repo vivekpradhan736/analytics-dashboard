@@ -57,6 +57,26 @@ export default {
           border: "hsl(var(--sidebar-border))",
           ring: "hsl(var(--sidebar-ring))",
         },
+        dashboard: {
+          blue: "hsl(var(--dashboard-blue))",
+          purple: "hsl(var(--dashboard-purple))",
+          green: "hsl(var(--dashboard-green))",
+          orange: "hsl(var(--dashboard-orange))",
+          red: "hsl(var(--dashboard-red))",
+        },
+        chart: {
+          1: "hsl(var(--chart-1))",
+          2: "hsl(var(--chart-2))",
+          3: "hsl(var(--chart-3))",
+          4: "hsl(var(--chart-4))",
+          5: "hsl(var(--chart-5))",
+        },
+      },
+      backgroundImage: {
+        'gradient-primary': 'var(--gradient-primary)',
+        'gradient-success': 'var(--gradient-success)',
+        'gradient-warning': 'var(--gradient-warning)',
+        'gradient-danger': 'var(--gradient-danger)',
       },
       borderRadius: {
         lg: "var(--radius)",
