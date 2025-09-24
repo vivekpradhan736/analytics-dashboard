@@ -20,6 +20,7 @@ import {
   SidebarMenuItem,
   useSidebar,
 } from "@/components/ui/sidebar";
+import engenxLogo from "@/assets/engenx-logo.png";
 
 const menuItems = [
   { title: "Dashboard", url: "/", icon: LayoutDashboard },
@@ -49,13 +50,13 @@ export function DashboardSidebar() {
         {/* Brand Header */}
         <div className="p-4 border-b">
           <div className="flex items-center gap-3">
-            <div className="w-8 h-8 bg-gradient-primary rounded-lg flex items-center justify-center">
-              <Car className="w-5 h-5 text-white" />
+            <div className="w-8 h-8 bg-white rounded-lg flex items-center justify-center border">
+              <img src={engenxLogo} alt="ENGENX" className="w-7 h-auto" />
             </div>
             {!collapsed && (
               <div>
-                <h2 className="text-sm font-semibold text-foreground">CarHealth</h2>
-                <p className="text-xs text-muted-foreground">Analytics Dashboard</p>
+                <h2 className="text-sm font-semibold text-foreground">ENGENX</h2>
+                <p className="text-xs text-muted-foreground">Car Health Analytics</p>
               </div>
             )}
           </div>
