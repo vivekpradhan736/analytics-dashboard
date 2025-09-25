@@ -89,6 +89,51 @@ export default function Dashboard() {
     { name: 'Good', value: Math.max(0, 8 - analysis.damagedParts.length), color: severityColors[2] }
   ];
 
+  const chartData = [
+  {
+    name: 'Page A',
+    uv: 40,
+    pv: 2400,
+    amt: 2400,
+  },
+  {
+    name: 'Page B',
+    uv: 20,
+    pv: 1398,
+    amt: 2210,
+  },
+  {
+    name: 'Page C',
+    uv: 50,
+    pv: 9800,
+    amt: 2290,
+  },
+  // {
+  //   name: 'Page D',
+  //   uv: 2780,
+  //   pv: 3908,
+  //   amt: 2000,
+  // },
+  // {
+  //   name: 'Page E',
+  //   uv: 1890,
+  //   pv: 4800,
+  //   amt: 2181,
+  // },
+  // {
+  //   name: 'Page F',
+  //   uv: 2390,
+  //   pv: 3800,
+  //   amt: 2500,
+  // },
+  // {
+  //   name: 'Page G',
+  //   uv: 3490,
+  //   pv: 4300,
+  //   amt: 2100,
+  // },
+];
+
   return (
     <DashboardLayout>
       <div className="space-y-6">
@@ -109,6 +154,7 @@ export default function Dashboard() {
             changeLabel="from last week"
             icon={<Gauge className="w-5 h-5" />}
             variant={healthScore > 80 ? 'success' : healthScore > 60 ? 'warning' : 'danger'}
+            chartData={chartData}
           />
           
           <MetricCard
@@ -118,6 +164,7 @@ export default function Dashboard() {
             changeLabel="from last check"
             icon={<AlertTriangle className="w-5 h-5" />}
             variant={analysis.damagedParts.length === 0 ? 'success' : 'warning'}
+            chartData={chartData}
           />
           
           <MetricCard
@@ -134,6 +181,7 @@ export default function Dashboard() {
             changeLabel="depreciation"
             icon={<DollarSign className="w-5 h-5" />}
             variant="default"
+            chartData={chartData}
           />
         </div>
 
