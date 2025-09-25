@@ -58,11 +58,11 @@ export default {
           ring: "hsl(var(--sidebar-ring))",
         },
         dashboard: {
-          blue: "hsl(var(--dashboard-blue))",
+          red: "hsl(var(--dashboard-red))",
           purple: "hsl(var(--dashboard-purple))",
           green: "hsl(var(--dashboard-green))",
           orange: "hsl(var(--dashboard-orange))",
-          red: "hsl(var(--dashboard-red))",
+          blue: "hsl(var(--dashboard-blue))",
         },
         chart: {
           1: "hsl(var(--chart-1))",

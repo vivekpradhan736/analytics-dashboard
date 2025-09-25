@@ -317,32 +317,6 @@ export default function ResaleValue() {
             </div>
           </CardContent>
         </Card>
-
-        {/* What's Next Section */}
-        <Card className="bg-gradient-subtle border-dashboard-blue/20">
-          <CardHeader>
-            <CardTitle className="flex items-center gap-2 text-dashboard-blue">
-              <DollarSign className="w-5 h-5" />
-              What's Next?
-            </CardTitle>
-          </CardHeader>
-          <CardContent>
-            <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-              <div className="space-y-2">
-                <h4 className="font-semibold text-foreground">• Refine & Customize:</h4>
-                <p className="text-sm text-muted-foreground">
-                  Add local market data, customize valuation models, or integrate with automotive marketplaces for real-time pricing
-                </p>
-              </div>
-              <div className="space-y-2">
-                <h4 className="font-semibold text-foreground">• Master Prompting:</h4>
-                <p className="text-sm text-muted-foreground">
-                  Use "chat mode" to add value tracking alerts, market trend analysis, or automated appraisal scheduling
-                </p>
-              </div>
-            </div>
-          </CardContent>
-        </Card>
       </div>
     </DashboardLayout>
   );

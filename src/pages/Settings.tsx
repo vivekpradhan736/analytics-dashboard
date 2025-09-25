@@ -461,32 +461,6 @@ export default function Settings() {
             </Card>
           </TabsContent>
         </Tabs>
-
-        {/* What's Next Section */}
-        <Card className="bg-gradient-subtle border-dashboard-blue/20">
-          <CardHeader>
-            <CardTitle className="flex items-center gap-2 text-dashboard-blue">
-              <SettingsIcon className="w-5 h-5" />
-              What's Next?
-            </CardTitle>
-          </CardHeader>
-          <CardContent>
-            <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-              <div className="space-y-2">
-                <h4 className="font-semibold text-foreground">• Refine & Customize:</h4>
-                <p className="text-sm text-muted-foreground">
-                  Add custom user roles, integrate with third-party services, or create personalized dashboard layouts for different user types
-                </p>
-              </div>
-              <div className="space-y-2">
-                <h4 className="font-semibold text-foreground">• Master Prompting:</h4>
-                <p className="text-sm text-muted-foreground">
-                  Use "chat mode" to add advanced user preferences, custom notification rules, or multi-vehicle management features
-                </p>
-              </div>
-            </div>
-          </CardContent>
-        </Card>
       </div>
     </DashboardLayout>
   );

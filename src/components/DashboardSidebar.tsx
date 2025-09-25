@@ -45,16 +45,16 @@ export function DashboardSidebar() {
 
   return (
     <Sidebar collapsible="icon">
-      <SidebarContent>
+      <SidebarContent className="bg-white">
         {/* Brand Header */}
         <div className="p-4 border-b">
           <div className="flex items-center gap-3">
-            <div className="w-8 h-8 bg-gradient-primary rounded-lg flex items-center justify-center">
+            {/* <div className="w-8 h-8 bg-gradient-primary rounded-lg flex items-center justify-center">
               <Car className="w-5 h-5 text-white" />
-            </div>
+            </div> */}
             {!collapsed && (
               <div>
-                <h2 className="text-sm font-semibold text-foreground">CarHealth</h2>
+                <img src="./ForWhite.svg" alt="ENGENX" className="w-32 h-5 object-cover" />
                 <p className="text-xs text-muted-foreground">Analytics Dashboard</p>
               </div>
             )}
@@ -68,10 +68,10 @@ export function DashboardSidebar() {
             <SidebarMenu>
               {menuItems.map((item) => (
                 <SidebarMenuItem key={item.title}>
-                  <SidebarMenuButton asChild>
-                    <NavLink to={item.url} end className={getNavCls}>
-                      <item.icon className="w-5 h-5" />
-                      {!collapsed && <span className="text-sm">{item.title}</span>}
+                  <SidebarMenuButton asChild className="">
+                    <NavLink to={item.url} end className={`getNavCls ${currentPath === item.url ? "bg-[#fbefef]" : ""}`}>
+                      <item.icon className={`w-5 h-5 ${currentPath === item.url ? "text-[#d36262]" : "text-gray-500"}`} />
+                      {!collapsed && <span className={`text-sm ${currentPath === item.url ? "text-[#d36262]" : "text-gray-500"}`}>{item.title}</span>}
                     </NavLink>
                   </SidebarMenuButton>
                 </SidebarMenuItem>
@@ -88,9 +88,9 @@ export function DashboardSidebar() {
               {otherItems.map((item) => (
                 <SidebarMenuItem key={item.title}>
                   <SidebarMenuButton asChild>
-                    <NavLink to={item.url} className={getNavCls}>
-                      <item.icon className="w-5 h-5" />
-                      {!collapsed && <span className="text-sm">{item.title}</span>}
+                    <NavLink to={item.url} className={`getNavCls ${currentPath === item.url ? "bg-[#fbefef]" : ""}`}>
+                      <item.icon className={`w-5 h-5 ${currentPath === item.url ? "text-[#d36262]" : "text-gray-500"}`} />
+                      {!collapsed && <span className={`text-sm ${currentPath === item.url ? "text-[#d36262]" : "text-gray-500"}`}>{item.title}</span>}
                     </NavLink>
                   </SidebarMenuButton>
                 </SidebarMenuItem>

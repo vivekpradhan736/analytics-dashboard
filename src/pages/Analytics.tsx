@@ -370,32 +370,6 @@ export default function Analytics() {
             </Card>
           </TabsContent>
         </Tabs>
-
-        {/* What's Next Section */}
-        <Card className="bg-gradient-subtle border-dashboard-blue/20">
-          <CardHeader>
-            <CardTitle className="flex items-center gap-2 text-dashboard-blue">
-              <BarChart3 className="w-5 h-5" />
-              What's Next?
-            </CardTitle>
-          </CardHeader>
-          <CardContent>
-            <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-              <div className="space-y-2">
-                <h4 className="font-semibold text-foreground">• Refine & Customize:</h4>
-                <p className="text-sm text-muted-foreground">
-                  Add custom KPIs, create automated reports, or integrate with fleet management systems for multi-vehicle tracking
-                </p>
-              </div>
-              <div className="space-y-2">
-                <h4 className="font-semibold text-foreground">• Master Prompting:</h4>
-                <p className="text-sm text-muted-foreground">
-                  Use "chat mode" to add predictive analytics, anomaly detection, or custom dashboard widgets for specific metrics
-                </p>
-              </div>
-            </div>
-          </CardContent>
-        </Card>
       </div>
     </DashboardLayout>
   );

@@ -10,6 +10,7 @@ import ResaleValue from "./pages/ResaleValue";
 import Analytics from "./pages/Analytics";
 import Settings from "./pages/Settings";
 import NotFound from "./pages/NotFound";
+import HealthAnalysis from "./pages/HealthAnalysis";
 
 const queryClient = new QueryClient();
 
@@ -21,7 +22,7 @@ const App = () => (
       <BrowserRouter>
         <Routes>
           <Route path="/" element={<Dashboard />} />
-          <Route path="/health" element={<Index />} />
+          <Route path="/health" element={<HealthAnalysis />} />
           <Route path="/maintenance" element={<Maintenance />} />
           <Route path="/resale" element={<ResaleValue />} />
           <Route path="/analytics" element={<Analytics />} />

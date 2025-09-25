@@ -261,32 +261,6 @@ export default function Maintenance() {
             </CardContent>
           </Card>
         </div>
-
-        {/* What's Next Section */}
-        <Card className="bg-gradient-subtle border-dashboard-blue/20">
-          <CardHeader>
-            <CardTitle className="flex items-center gap-2 text-dashboard-blue">
-              <Wrench className="w-5 h-5" />
-              What's Next?
-            </CardTitle>
-          </CardHeader>
-          <CardContent>
-            <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-              <div className="space-y-2">
-                <h4 className="font-semibold text-foreground">• Refine & Customize:</h4>
-                <p className="text-sm text-muted-foreground">
-                  Tweak the maintenance schedules, add custom service intervals, or integrate with your preferred service providers
-                </p>
-              </div>
-              <div className="space-y-2">
-                <h4 className="font-semibold text-foreground">• Master Prompting:</h4>
-                <p className="text-sm text-muted-foreground">
-                  Use "chat mode" to add maintenance reminders, service history tracking, or cost optimization features
-                </p>
-              </div>
-            </div>
-          </CardContent>
-        </Card>
       </div>
     </DashboardLayout>
   );
