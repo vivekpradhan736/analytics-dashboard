@@ -40,7 +40,7 @@ import {
 const mockAnalyticsData = {
   overview: {
     totalDrives: 247,
-    totalMiles: 8543,
+    totalkms: 8543,
     avgFuelEconomy: 28.5,
     co2Emissions: 2.1
   },
@@ -59,9 +59,9 @@ const mockAnalyticsData = {
     { time: '20:00', engineTemp: 88, oilTemp: 86, batteryVoltage: 12.5, fuelPressure: 58 }
   ],
   drivingPatterns: [
-    { type: 'City', miles: 3421, percentage: 40, efficiency: 25.2 },
-    { type: 'Highway', miles: 3654, percentage: 43, efficiency: 32.1 },
-    { type: 'Mixed', miles: 1468, percentage: 17, efficiency: 28.9 }
+    { type: 'City', kms: 3421, percentage: 40, efficiency: 25.2 },
+    { type: 'Highway', kms: 3654, percentage: 43, efficiency: 32.1 },
+    { type: 'Mixed', kms: 1468, percentage: 17, efficiency: 28.9 }
   ],
   maintenanceImpact: [
     { month: 'May', beforeService: 82, afterService: 95 },
@@ -110,8 +110,8 @@ export default function Analytics() {
             variant="success"
           />
           <MetricCard
-            title="Miles Driven"
-            value={`${mockAnalyticsData.overview.totalMiles.toLocaleString()}`}
+            title="K.M Driven"
+            value={`${mockAnalyticsData.overview.totalkms.toLocaleString()}`}
             change={8}
             changeLabel="this month"
             icon={<Gauge className="w-5 h-5" />}
@@ -329,7 +329,7 @@ export default function Analytics() {
                           ></div>
                         </div>
                         <div className="text-xs text-muted-foreground">
-                          {pattern.miles.toLocaleString()} miles ({pattern.percentage}%)
+                          {pattern.kms.toLocaleString()} kms ({pattern.percentage}%)
                         </div>
                       </div>
                     ))}

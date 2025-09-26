@@ -23,7 +23,7 @@ import {
   AlertTriangle, 
   CheckCircle, 
   Clock, 
-  DollarSign, 
+  IndianRupee, 
   Wrench, 
   TrendingDown, 
   TrendingUp,
@@ -171,17 +171,17 @@ export default function Dashboard() {
           
           <MetricCard
             title="Next Maintenance"
-            value="2,500 mi"
+            value="2,500 km"
             icon={<Wrench className="w-5 h-5" />}
             variant="default"
           />
           
           <MetricCard
             title="Estimated Value"
-            value={`$${analysis.resaleValue.marketValue.toLocaleString()}`}
+            value={`₹${analysis.resaleValue.marketValue.toLocaleString()}`}
             change={-3.2}
             changeLabel="depreciation"
-            icon={<DollarSign className="w-5 h-5" />}
+            icon={<IndianRupee className="w-5 h-5" />}
             variant="default"
             chartData={chartData}
           />
@@ -273,7 +273,7 @@ export default function Dashboard() {
                       <Badge variant={part.severity === 'high' ? 'destructive' : 'secondary'}>
                         {part.status}
                       </Badge>
-                      <span className="text-sm font-medium text-foreground">${part.repairCost}</span>
+                      <span className="text-sm font-medium text-foreground">₹{part.repairCost}</span>
                     </div>
                   </div>
                 ))}
@@ -307,7 +307,7 @@ export default function Dashboard() {
                       <Badge variant={item.priority === 'High' ? 'destructive' : 'secondary'}>
                         {item.priority}
                       </Badge>
-                      <span className="text-sm font-medium text-foreground">${item.estimatedCost}</span>
+                      <span className="text-sm font-medium text-foreground">₹{item.estimatedCost}</span>
                     </div>
                   </div>
                 ))}

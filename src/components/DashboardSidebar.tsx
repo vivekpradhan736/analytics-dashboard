@@ -4,7 +4,7 @@ import {
   LayoutDashboard, 
   AlertTriangle, 
   Wrench, 
-  DollarSign, 
+  IndianRupee, 
   BarChart3,
   Settings,
   Car
@@ -25,7 +25,7 @@ const menuItems = [
   { title: "Dashboard", url: "/", icon: LayoutDashboard },
   { title: "Health Analysis", url: "/health", icon: AlertTriangle },
   { title: "Maintenance", url: "/maintenance", icon: Wrench },
-  { title: "Resale Value", url: "/resale", icon: DollarSign },
+  { title: "Resale Value", url: "/resale", icon: IndianRupee },
   { title: "Analytics", url: "/analytics", icon: BarChart3 },
 ];
 

@@ -5,7 +5,7 @@ import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
 import { Progress } from "@/components/ui/progress";
 import { 
-  DollarSign, 
+  IndianRupee, 
   TrendingUp, 
   TrendingDown, 
   Car,
@@ -107,10 +107,10 @@ export default function ResaleValue() {
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
           <MetricCard
             title="Current Market Value"
-            value={`$${mockResaleData.currentValue.market.toLocaleString()}`}
+            value={`₹${mockResaleData.currentValue.market.toLocaleString()}`}
             change={-2.1}
             changeLabel="estimated market price"
-            icon={<DollarSign className="w-5 h-5" />}
+            icon={<IndianRupee className="w-5 h-5" />}
             variant="warning"
           />
           <MetricCard
@@ -123,7 +123,7 @@ export default function ResaleValue() {
           />
           <MetricCard
             title="Potential Value Gain"
-            value={`$${potentialGain.toLocaleString()}`}
+            value={`₹${potentialGain.toLocaleString()}`}
             change={12}
             changeLabel="with recommended improvements"
             icon={<TrendingUp className="w-5 h-5" />}
@@ -152,25 +152,25 @@ export default function ResaleValue() {
               <div className="space-y-4">
                 <div className="flex justify-between items-center p-3 bg-gradient-subtle rounded-lg">
                   <span className="font-medium text-foreground">Base Value (2019 Toyota Camry)</span>
-                  <span className="font-bold text-lg">${mockResaleData.baseValue.toLocaleString()}</span>
+                  <span className="font-bold text-lg">₹{mockResaleData.baseValue.toLocaleString()}</span>
                 </div>
                 
                 <div className="space-y-3">
                   <div className="flex justify-between items-center">
                     <span className="text-muted-foreground">Market Value</span>
-                    <span className="font-semibold text-dashboard-green">${mockResaleData.currentValue.market.toLocaleString()}</span>
+                    <span className="font-semibold text-dashboard-green">₹{mockResaleData.currentValue.market.toLocaleString()}</span>
                   </div>
                   <div className="flex justify-between items-center">
                     <span className="text-muted-foreground">Trade-in Value</span>
-                    <span className="font-semibold">${mockResaleData.currentValue.tradeIn.toLocaleString()}</span>
+                    <span className="font-semibold">₹{mockResaleData.currentValue.tradeIn.toLocaleString()}</span>
                   </div>
                   <div className="flex justify-between items-center">
                     <span className="text-muted-foreground">Private Party</span>
-                    <span className="font-semibold text-dashboard-blue">${mockResaleData.currentValue.privateParty.toLocaleString()}</span>
+                    <span className="font-semibold text-dashboard-blue">₹{mockResaleData.currentValue.privateParty.toLocaleString()}</span>
                   </div>
                   <div className="flex justify-between items-center">
                     <span className="text-muted-foreground">Certified Pre-owned</span>
-                    <span className="font-semibold">${mockResaleData.currentValue.certified.toLocaleString()}</span>
+                    <span className="font-semibold">₹{mockResaleData.currentValue.certified.toLocaleString()}</span>
                   </div>
                 </div>
 
@@ -179,11 +179,11 @@ export default function ResaleValue() {
                   <div className="space-y-2">
                     <div className="flex justify-between items-center">
                       <span className="text-sm text-muted-foreground">Mileage Impact</span>
-                      <span className="text-sm text-dashboard-red">-${mockResaleData.depreciation.mileage.toLocaleString()}</span>
+                      <span className="text-sm text-dashboard-red">-₹{mockResaleData.depreciation.mileage.toLocaleString()}</span>
                     </div>
                     <div className="flex justify-between items-center">
                       <span className="text-sm text-muted-foreground">Condition Impact</span>
-                      <span className="text-sm text-dashboard-red">-${mockResaleData.depreciation.condition.toLocaleString()}</span>
+                      <span className="text-sm text-dashboard-red">-₹{mockResaleData.depreciation.condition.toLocaleString()}</span>
                     </div>
                   </div>
                 </div>
@@ -280,11 +280,11 @@ export default function ResaleValue() {
                     <div className="grid grid-cols-2 md:grid-cols-4 gap-4 text-sm">
                       <div>
                         <span className="text-muted-foreground">Cost: </span>
-                        <span className="font-medium text-dashboard-red">${improvement.currentCost}</span>
+                        <span className="font-medium text-dashboard-red">₹{improvement.currentCost}</span>
                       </div>
                       <div>
                         <span className="text-muted-foreground">Value Gain: </span>
-                        <span className="font-medium text-dashboard-green">+${improvement.valueIncrease}</span>
+                        <span className="font-medium text-dashboard-green">+₹{improvement.valueIncrease}</span>
                       </div>
                       <div>
                         <span className="text-muted-foreground">ROI: </span>
@@ -310,7 +310,7 @@ export default function ResaleValue() {
                   <p className="text-sm text-muted-foreground">If all improvements are made</p>
                 </div>
                 <div className="text-right">
-                  <div className="text-2xl font-bold text-dashboard-green">+${potentialGain.toLocaleString()}</div>
+                  <div className="text-2xl font-bold text-dashboard-green">+₹{potentialGain.toLocaleString()}</div>
                   <div className="text-sm text-muted-foreground">Net profit after costs</div>
                 </div>
               </div>

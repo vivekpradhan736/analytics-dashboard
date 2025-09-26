@@ -1,7 +1,7 @@
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
-import { AlertTriangle, CheckCircle, Wrench, DollarSign, Clock, Info } from 'lucide-react';
+import { AlertTriangle, CheckCircle, Wrench, IndianRupee, Clock, Info } from 'lucide-react';
 import { CarHealthAnalyzer, type OBDData } from "@/lib/carHealthAnalyzer";
 
 interface DTCAnalysisProps {
@@ -107,8 +107,8 @@ export function DTCAnalysis({ obdData }: DTCAnalysisProps) {
                       {dtcInfo && (
                         <div className="text-right">
                           <p className="text-sm text-muted-foreground flex items-center gap-1">
-                            <DollarSign className="w-3 h-3" />
-                            Est. ${dtcInfo.estimatedCost}
+                            <IndianRupee className="w-3 h-3" />
+                            Est. ₹{dtcInfo.estimatedCost}
                           </p>
                         </div>
                       )}
@@ -171,7 +171,7 @@ export function DTCAnalysis({ obdData }: DTCAnalysisProps) {
                   </div>
                   <div>
                     <p className="text-2xl font-bold text-primary">
-                      ${dtcs.reduce((total, code) => {
+                      ₹{dtcs.reduce((total, code) => {
                         const dtcInfo = CarHealthAnalyzer.dtcDatabase[code];
                         return total + (dtcInfo?.estimatedCost || 0);
                       }, 0)}

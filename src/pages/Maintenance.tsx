@@ -10,7 +10,7 @@ import {
   AlertTriangle, 
   CheckCircle, 
   Calendar,
-  DollarSign,
+  IndianRupee,
   Car,
   Zap,
   Droplets,
@@ -23,7 +23,7 @@ const mockMaintenanceData = {
   upcomingServices: [
     {
       service: "Oil Change",
-      dueIn: "850 miles",
+      dueIn: "850 km's",
       timeEstimate: "2 weeks",
       priority: "High",
       cost: 75,
@@ -32,7 +32,7 @@ const mockMaintenanceData = {
     },
     {
       service: "Brake Inspection",
-      dueIn: "2,300 miles",
+      dueIn: "2,300 km's",
       timeEstimate: "6 weeks",
       priority: "Medium",
       cost: 120,
@@ -41,7 +41,7 @@ const mockMaintenanceData = {
     },
     {
       service: "Air Filter",
-      dueIn: "4,200 miles",
+      dueIn: "4,200 km's",
       timeEstimate: "3 months",
       priority: "Low",
       cost: 35,
@@ -64,21 +64,21 @@ const mockMaintenanceData = {
       completedDate: "2024-08-15",
       cost: 65,
       mileage: 44850,
-      nextDue: "50,850 miles"
+      nextDue: "50,850 km's"
     },
     {
       service: "Coolant Flush",
       completedDate: "2024-07-22",
       cost: 150,
       mileage: 44200,
-      nextDue: "74,200 miles"
+      nextDue: "74,200 km's"
     },
     {
       service: "Spark Plugs",
       completedDate: "2024-06-10",
       cost: 280,
       mileage: 43800,
-      nextDue: "73,800 miles"
+      nextDue: "73,800 km's"
     }
   ],
   maintenanceScore: 85,
@@ -136,10 +136,10 @@ export default function Maintenance() {
           />
           <MetricCard
             title="Total Savings"
-            value={`$${mockMaintenanceData.totalSavings.toLocaleString()}`}
+            value={`₹${mockMaintenanceData.totalSavings.toLocaleString()}`}
             change={12}
             changeLabel="preventive maintenance savings"
-            icon={<DollarSign className="w-5 h-5" />}
+            icon={<IndianRupee className="w-5 h-5" />}
             variant="success"
           />
           <MetricCard
@@ -163,7 +163,7 @@ export default function Maintenance() {
             <div className="space-y-4">
               <div className="flex justify-between text-sm">
                 <span className="text-muted-foreground">Next Service Progress</span>
-                <span className="font-medium">850 / 5000 miles to oil change</span>
+                <span className="font-medium">850 / 5000 km's to oil change</span>
               </div>
               <Progress value={83} className="h-2" />
               <div className="grid grid-cols-1 md:grid-cols-3 gap-4 mt-6">
@@ -216,7 +216,7 @@ export default function Maintenance() {
                           <p>{service.description}</p>
                           <div className="flex items-center gap-4">
                             <span>Due in: {service.dueIn}</span>
-                            <span>Est. Cost: ${service.cost}</span>
+                            <span>Est. Cost: ₹{service.cost}</span>
                           </div>
                         </div>
                       </div>
@@ -246,11 +246,11 @@ export default function Maintenance() {
                       <h4 className="font-semibold text-foreground">{service.service}</h4>
                       <div className="text-sm text-muted-foreground">
                         <p>Completed: {new Date(service.completedDate).toLocaleDateString()}</p>
-                        <p>At: {service.mileage.toLocaleString()} miles</p>
+                        <p>At: {service.mileage.toLocaleString()} km's</p>
                       </div>
                     </div>
                     <div className="text-right">
-                      <div className="font-semibold text-foreground">${service.cost}</div>
+                      <div className="font-semibold text-foreground">₹{service.cost}</div>
                       <div className="text-sm text-muted-foreground">
                         Next: {service.nextDue}
                       </div>

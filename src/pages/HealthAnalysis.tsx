@@ -147,7 +147,7 @@ const HealthAnalysis = () => {
                     </div>
                     <p className="text-sm text-muted-foreground mb-2">{part.issue}</p>
                     <div className="flex items-center justify-between text-sm">
-                      <span>Estimated Cost: <span className="font-semibold">${part.repairCost}</span></span>
+                      <span>Estimated Cost: <span className="font-semibold">₹{part.repairCost}</span></span>
                       <span className={`font-semibold ${getSeverityColor(part.severity)}`}>
                         {part.urgency}
                       </span>

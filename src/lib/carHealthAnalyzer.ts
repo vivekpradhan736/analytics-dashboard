@@ -74,7 +74,7 @@ export interface DamagedPart {
 export interface MaintenanceItem {
   component: string;
   timeToService: string;
-  milesRemaining: number | string;
+  kmsRemaining: number | string;
   currentCondition: string;
   priority: 'High' | 'Medium' | 'Low';
   estimatedCost: number;
@@ -92,7 +92,7 @@ export interface ResaleValue {
   };
   factors: {
     mileage: number;
-    excessMiles: number;
+    excessKms: number;
     healthScore: number;
     dtcCount: number;
   };
@@ -363,8 +363,8 @@ export class CarHealthAnalyzer {
     
     maintenanceSchedule.push({
       component: 'Engine Oil',
-      timeToService: this.calculateTimeToMiles(oilDue, 12000),
-      milesRemaining: oilDue,
+      timeToService: this.calculateTimeToKms(oilDue, 12000),
+      kmsRemaining: oilDue,
       currentCondition: oilCondition,
       priority: oilDue === 0 ? 'High' : 'Medium',
       estimatedCost: 75
@@ -376,8 +376,8 @@ export class CarHealthAnalyzer {
     
     maintenanceSchedule.push({
       component: 'Air Filter',
-      timeToService: this.calculateTimeToMiles(airFilterDue, 12000),
-      milesRemaining: airFilterDue,
+      timeToService: this.calculateTimeToKms(airFilterDue, 12000),
+      kmsRemaining: airFilterDue,
       currentCondition: sensors.intakeTemp > 40 ? 'Degrading' : 'Good',
       priority: airFilterDue < 2000 ? 'High' : 'Low',
       estimatedCost: 35
@@ -393,8 +393,8 @@ export class CarHealthAnalyzer {
     
     maintenanceSchedule.push({
       component: 'Brake Pads',
-      timeToService: this.calculateTimeToMiles(brakeDue, 12000),
-      milesRemaining: brakeDue,
+      timeToService: this.calculateTimeToKms(brakeDue, 12000),
+      kmsRemaining: brakeDue,
       currentCondition: brakeCondition,
       priority: brakeDue < 3000 || brakeCondition === 'Needs Attention' ? 'High' : 'Medium',
       estimatedCost: 300
@@ -408,7 +408,7 @@ export class CarHealthAnalyzer {
     maintenanceSchedule.push({
       component: 'Battery',
       timeToService: `${Math.max(0, batteryTimeRemaining)} years`,
-      milesRemaining: 'Age-based',
+      kmsRemaining: 'Age-based',
       currentCondition: sensors.batteryVoltage < 12.0 ? 'Weak' : 'Good',
       priority: sensors.batteryVoltage < 12.0 || batteryTimeRemaining < 1 ? 'High' : 'Low',
       estimatedCost: 150
@@ -421,8 +421,8 @@ export class CarHealthAnalyzer {
       
       maintenanceSchedule.push({
         component: 'Transmission Service',
-        timeToService: this.calculateTimeToMiles(transDue, 12000),
-        milesRemaining: transDue,
+        timeToService: this.calculateTimeToKms(transDue, 12000),
+        kmsRemaining: transDue,
         currentCondition: sensors.transmissionTemp > 100 ? 'Overheating' : 'Good',
         priority: sensors.transmissionTemp > 100 ? 'High' : 'Low',
         estimatedCost: 200
@@ -446,7 +446,7 @@ export class CarHealthAnalyzer {
       maintenanceSchedule.push({
         component: 'Tires',
         timeToService: tireCondition === 'Replace Immediately' ? 'Overdue' : '6 months',
-        milesRemaining: tireCondition === 'Replace Immediately' ? 0 : 5000,
+        kmsRemaining: tireCondition === 'Replace Immediately' ? 0 : 5000,
         currentCondition: tireCondition,
         priority: tirePriority,
         estimatedCost: 600
@@ -474,10 +474,10 @@ export class CarHealthAnalyzer {
     const baseValue = baseValues[vehicleKey]?.[vehicle.year] || 18000;
     
     // Mileage depreciation
-    const avgMilesPerYear = 12000;
-    const expectedMiles = (new Date().getFullYear() - vehicle.year) * avgMilesPerYear;
-    const excessMiles = Math.max(0, sensors.mileage - expectedMiles);
-    const mileageDepreciation = excessMiles * 0.12;
+    const avgKmsPerYear = 12000;
+    const expectedKms = (new Date().getFullYear() - vehicle.year) * avgKmsPerYear;
+    const excessKms = Math.max(0, sensors.mileage - expectedKms);
+    const mileageDepreciation = excessKms * 0.12;
     
     // Health-based depreciation
     let healthDepreciation = 0;
@@ -524,15 +524,15 @@ export class CarHealthAnalyzer {
       },
       factors: {
         mileage: sensors.mileage,
-        excessMiles,
+        excessKms,
         healthScore: Math.round(Math.max(0, (1 - (healthDepreciation / baseValue)) * 100)),
         dtcCount: dtcs.length
       }
     };
   }
 
-  static calculateTimeToMiles(miles: number, milesPerYear: number): string {
-    const months = Math.round((miles / milesPerYear) * 12);
+  static calculateTimeToKms(kms: number, kmsPerYear: number): string {
+    const months = Math.round((kms / kmsPerYear) * 12);
     if (months < 1) return 'Due now';
     if (months === 1) return '1 month';
     if (months < 12) return `${months} months`;
