@@ -17,10 +17,10 @@ export function DashboardLayout({ children }: DashboardLayoutProps) {
         
         <div className="flex-1 flex flex-col">
           {/* Header */}
-          <header className="h-16 w-full border-b bg-card px-6 flex items-center justify-between">
+          <header className="h-16 w-full border-b bg-card md:px-6 px-3 flex items-center justify-between">
             <div className="flex items-center gap-4 w-[50%]">
               <SidebarTrigger className="text-muted-foreground hover:text-foreground" />
-              <div className="relative lg:w-96 md:w-64 sm:w-72 w-52">
+              <div className="relative lg:w-96 md:w-64 sm:w-72 w-32">
                 <Search className="absolute left-3 top-1/2 transform -translate-y-1/2 text-muted-foreground w-4 h-4" />
                 <Input 
                   placeholder="Search..." 
@@ -37,7 +37,7 @@ export function DashboardLayout({ children }: DashboardLayoutProps) {
                 </div>
               </Button>
               
-              <div className="flex items-center gap-3">
+              <div className="flex items-center md:gap-3 gap-[0.2rem]">
                 <div className="text-right">
                   <p className="text-sm font-medium text-foreground">Vivek Pradhan</p>
                   <p className="text-xs text-muted-foreground">2019 Tata Safari</p>
