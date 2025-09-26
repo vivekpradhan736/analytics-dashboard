@@ -9,7 +9,7 @@ import { DashboardLayout } from '@/components/DashboardLayout';
 const HealthAnalysis = () => {
   const obdData = mockOBDData;
   const damagedParts = CarHealthAnalyzer.analyzeDamagedParts(obdData);
-  const healthScore = Math.max(0, 100 - (damagedParts.length * 15) - (obdData.dtcCodes.length * 10));
+  const healthScore = Math.max(0, 100 - (damagedParts.length * 15) - (obdData.dtcs.length * 10));
 
   const getHealthScoreColor = (score: number) => {
     if (score >= 80) return 'text-dashboard-green';
@@ -44,9 +44,9 @@ const HealthAnalysis = () => {
   const systemHealth = [
     {
       system: 'Engine',
-      score: obdData.sensors.coolantTemp <= 95 && obdData.sensors.oilTemp <= 110 ? 95 : 65,
+      score: obdData.sensors.engineTemp <= 95 ? 95 : 65,
       icon: Thermometer,
-      status: obdData.sensors.coolantTemp <= 95 ? 'Optimal' : 'Warning'
+      status: obdData.sensors.engineTemp <= 95 ? 'Optimal' : 'Warning'
     },
     {
       system: 'Battery',
@@ -56,15 +56,15 @@ const HealthAnalysis = () => {
     },
     {
       system: 'Fuel System',
-      score: obdData.sensors.fuelPressure >= 50 ? 88 : 60,
+      score: obdData.sensors.fuelLevel ? (obdData.sensors.fuelLevel >= 25 ? 88 : 60) : 80,
       icon: Fuel,
-      status: obdData.sensors.fuelPressure >= 50 ? 'Normal' : 'Low Pressure'
+      status: obdData.sensors.fuelLevel ? (obdData.sensors.fuelLevel >= 25 ? 'Normal' : 'Low') : 'Unknown'
     },
     {
       system: 'Transmission',
-      score: obdData.sensors.transmissionTemp <= 95 ? 92 : 55,
+      score: obdData.sensors.transmissionTemp ? (obdData.sensors.transmissionTemp <= 95 ? 92 : 55) : 85,
       icon: Gauge,
-      status: obdData.sensors.transmissionTemp <= 95 ? 'Normal' : 'High Temp'
+      status: obdData.sensors.transmissionTemp ? (obdData.sensors.transmissionTemp <= 95 ? 'Normal' : 'High Temp') : 'Normal'
     }
   ];
 
@@ -161,7 +161,7 @@ const HealthAnalysis = () => {
       </Card>
 
       {/* DTC Codes */}
-      {obdData.dtcCodes.length > 0 && (
+      {obdData.dtcs.length > 0 && (
         <Card>
           <CardHeader>
             <CardTitle className="flex items-center gap-2">
@@ -171,14 +171,14 @@ const HealthAnalysis = () => {
           </CardHeader>
           <CardContent>
             <div className="space-y-3">
-              {obdData.dtcCodes.map((dtc, index) => (
+              {obdData.dtcs.map((code, index) => (
                 <div key={index} className="flex items-center justify-between p-3 rounded-lg border">
                   <div>
-                    <span className="font-mono font-semibold">{dtc.code}</span>
-                    <p className="text-sm text-muted-foreground">{dtc.description}</p>
+                    <span className="font-mono font-semibold">{code}</span>
+                    <p className="text-sm text-muted-foreground">DTC Code</p>
                   </div>
-                  <Badge variant={getSeverityBadge(dtc.severity)}>
-                    {dtc.severity.toUpperCase()}
+                  <Badge variant="secondary">
+                    ACTIVE
                   </Badge>
                 </div>
               ))}
