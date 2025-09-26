@@ -33,6 +33,8 @@ import {
   Fuel
 } from 'lucide-react';
 import { CarHealthAnalyzer, mockOBDData, type OBDData } from "@/lib/carHealthAnalyzer";
+import { SensorGrid } from "@/components/SensorGrid";
+import { DTCAnalysis } from "@/components/DTCAnalysis";
 
 interface AnalysisResult {
   damagedParts: any[];
@@ -69,7 +71,7 @@ export default function Dashboard() {
     );
   }
 
-  const healthScore = Math.max(0, 100 - (analysis.damagedParts.length * 15) - (obdData.dtcCodes.length * 10));
+  const healthScore = Math.max(0, 100 - (analysis.damagedParts.length * 15) - (obdData.dtcs.length * 10));
   
   // Chart data
   const sensorData = [
@@ -314,43 +316,11 @@ export default function Dashboard() {
           </Card>
         </div>
 
-        {/* Current Sensor Readings */}
-        <Card>
-          <CardHeader>
-            <CardTitle>Current Sensor Readings</CardTitle>
-          </CardHeader>
-          <CardContent>
-            <div className="grid grid-cols-2 md:grid-cols-4 gap-6">
-              <div className="text-center">
-                <Thermometer className="w-8 h-8 mx-auto mb-2 text-dashboard-orange" />
-                <p className="text-sm text-muted-foreground">Coolant Temp</p>
-                <p className="text-2xl font-bold text-foreground">{obdData.sensors.coolantTemp}°C</p>
-                <Progress value={60} className="mt-2" />
-              </div>
-              
-              <div className="text-center">
-                <Battery className="w-8 h-8 mx-auto mb-2 text-dashboard-green" />
-                <p className="text-sm text-muted-foreground">Battery Voltage</p>
-                <p className="text-2xl font-bold text-foreground">{obdData.sensors.batteryVoltage}V</p>
-                <Progress value={85} className="mt-2" />
-              </div>
-              
-              <div className="text-center">
-                <Fuel className="w-8 h-8 mx-auto mb-2 text-dashboard-blue" />
-                <p className="text-sm text-muted-foreground">Fuel Pressure</p>
-                <p className="text-2xl font-bold text-foreground">{obdData.sensors.fuelPressure} PSI</p>
-                <Progress value={75} className="mt-2" />
-              </div>
-              
-              <div className="text-center">
-                <Gauge className="w-8 h-8 mx-auto mb-2 text-dashboard-purple" />
-                <p className="text-sm text-muted-foreground">Engine RPM</p>
-                <p className="text-2xl font-bold text-foreground">{obdData.sensors.engineRPM}</p>
-                <Progress value={25} className="mt-2" />
-              </div>
-            </div>
-          </CardContent>
-        </Card>
+        {/* Enhanced Sensor Grid */}
+        <SensorGrid obdData={obdData} />
+        
+        {/* DTC Analysis */}
+        <DTCAnalysis obdData={obdData} />
       </div>
     </DashboardLayout>
   );
