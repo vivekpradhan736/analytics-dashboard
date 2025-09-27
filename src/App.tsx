@@ -11,6 +11,10 @@ import Settings from "./pages/Settings";
 import NotFound from "./pages/NotFound";
 import HealthAnalysis from "./pages/HealthAnalysis";
 import ServiceBookings from "./pages/ServiceBookings";
+import FleetLogistics from "./pages/FleetLogistics";
+import Insurance from "./pages/Insurance";
+import OEMDealerships from "./pages/OEMDealerships";
+import EVFleets from "./pages/EVFleets";
 
 const queryClient = new QueryClient();
 
@@ -27,6 +31,10 @@ const App = () => (
           <Route path="/service-bookings" element={<ServiceBookings />} />
           <Route path="/resale" element={<ResaleValue />} />
           <Route path="/analytics" element={<Analytics />} />
+          <Route path="/fleet-logistics" element={<FleetLogistics />} />
+          <Route path="/insurance" element={<Insurance />} />
+          <Route path="/oem-dealerships" element={<OEMDealerships />} />
+          <Route path="/ev-fleets" element={<EVFleets />} />
           <Route path="/settings" element={<Settings />} />
           <Route path="*" element={<NotFound />} />
         </Routes>
