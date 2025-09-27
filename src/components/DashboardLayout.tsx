@@ -17,7 +17,7 @@ export function DashboardLayout({ children }: DashboardLayoutProps) {
         
         <div className="flex-1 flex flex-col">
           {/* Header */}
-          <header className="h-16 w-full border-b bg-card md:px-6 px-3 flex items-center justify-between">
+          <header className="sticky top-0 h-16 w-full border-b bg-card md:px-6 px-3 flex items-center justify-between z-50">
             <div className="flex items-center gap-4 w-[50%]">
               <SidebarTrigger className="text-muted-foreground hover:text-foreground" />
               <div className="relative lg:w-96 md:w-64 sm:w-72 w-32">
