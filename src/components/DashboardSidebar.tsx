@@ -7,7 +7,8 @@ import {
   IndianRupee, 
   BarChart3,
   Settings,
-  Car
+  Car,
+  Calendar
 } from "lucide-react";
 import {
   Sidebar,
@@ -25,6 +26,7 @@ const menuItems = [
   { title: "Dashboard", url: "/", icon: LayoutDashboard },
   { title: "Health Analysis", url: "/health", icon: AlertTriangle },
   { title: "Maintenance", url: "/maintenance", icon: Wrench },
+  { title: "Service Bookings", url: "/service-bookings", icon: Calendar },
   { title: "Resale Value", url: "/resale", icon: IndianRupee },
   { title: "Analytics", url: "/analytics", icon: BarChart3 },
 ];

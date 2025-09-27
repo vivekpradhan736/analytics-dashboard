@@ -399,12 +399,12 @@ export default function Settings() {
 
         {/* Settings Tabs */}
         <Tabs defaultValue="profile" className="space-y-6">
-          <TabsList className="grid w-full grid-cols-5">
-            <TabsTrigger value="profile">Profile</TabsTrigger>
-            <TabsTrigger value="vehicle">Vehicle</TabsTrigger>
-            <TabsTrigger value="notifications">Notifications</TabsTrigger>
-            <TabsTrigger value="data">Data & Privacy</TabsTrigger>
-            <TabsTrigger value="appearance">Appearance</TabsTrigger>
+          <TabsList className="flex w-full overflow-x-auto scrollbar-hide">
+            <TabsTrigger value="profile" className="flex-shrink-0">Profile</TabsTrigger>
+            <TabsTrigger value="vehicle" className="flex-shrink-0">Vehicle</TabsTrigger>
+            <TabsTrigger value="notifications" className="flex-shrink-0">Notifications</TabsTrigger>
+            <TabsTrigger value="data" className="flex-shrink-0">Data & Privacy</TabsTrigger>
+            <TabsTrigger value="appearance" className="flex-shrink-0">Appearance</TabsTrigger>
           </TabsList>
 
           {/* Profile Settings */}

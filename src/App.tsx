@@ -10,6 +10,7 @@ import Analytics from "./pages/Analytics";
 import Settings from "./pages/Settings";
 import NotFound from "./pages/NotFound";
 import HealthAnalysis from "./pages/HealthAnalysis";
+import ServiceBookings from "./pages/ServiceBookings";
 
 const queryClient = new QueryClient();
 
@@ -23,6 +24,7 @@ const App = () => (
           <Route path="/" element={<Dashboard />} />
           <Route path="/health" element={<HealthAnalysis />} />
           <Route path="/maintenance" element={<Maintenance />} />
+          <Route path="/service-bookings" element={<ServiceBookings />} />
           <Route path="/resale" element={<ResaleValue />} />
           <Route path="/analytics" element={<Analytics />} />
           <Route path="/settings" element={<Settings />} />
