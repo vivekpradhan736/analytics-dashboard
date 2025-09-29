@@ -95,7 +95,7 @@ export function DashboardSidebar() {
 
         {/* B2B Features */}
         <SidebarGroup>
-          <SidebarGroupLabel>B2B SOLUTIONS</SidebarGroupLabel>
+          {/* <SidebarGroupLabel>B2B SOLUTIONS</SidebarGroupLabel> */}
           <SidebarGroupContent>
             <SidebarMenu>
               {b2bItems.map((item) => (
