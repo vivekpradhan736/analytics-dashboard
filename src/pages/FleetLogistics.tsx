@@ -14,7 +14,6 @@ const FleetLogistics = () => {
   const [selectedVehicle, setSelectedVehicle] = useState("all");
   const [costSavings, setCostSavings] = useState(0);
 
-  // Mock fleet data with OBD integration
   const fleetVehicles = [
     {
       id: "FL001", 

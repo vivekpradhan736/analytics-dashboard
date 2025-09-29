@@ -13,7 +13,6 @@ import { LineChart, Line, XAxis, YAxis, CartesianGrid, Tooltip, ResponsiveContai
 const EVFleets = () => {
   const [selectedVehicle, setSelectedVehicle] = useState("all");
   
-  // Mock EV fleet data with OBD integration
   const evFleetVehicles = [
     {
       id: "EV001",

@@ -13,7 +13,6 @@ import { LineChart, Line, XAxis, YAxis, CartesianGrid, Tooltip, ResponsiveContai
 const OEMDealerships = () => {
   const [selectedRecall, setSelectedRecall] = useState<any>(null);
   
-  // Mock OEM data with OBD integration
   const customerVehicles = [
     {
       vin: "1HGBH41JXMN109186",

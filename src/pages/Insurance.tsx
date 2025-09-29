@@ -14,7 +14,6 @@ const Insurance = () => {
   const [selectedClaim, setSelectedClaim] = useState<any>(null);
   const [verificationResults, setVerificationResults] = useState<any>(null);
 
-  // Mock insurance data with OBD integration
   const claimsData = [
     {
       id: "CLM001",
