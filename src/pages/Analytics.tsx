@@ -119,7 +119,7 @@ export default function Analytics() {
           />
           <MetricCard
             title="Fuel Economy"
-            value={`${mockAnalyticsData.overview.avgFuelEconomy} MPG`}
+            value={`${mockAnalyticsData.overview.avgFuelEconomy} kmpl`}
             change={5}
             changeLabel="average this month"
             icon={<Fuel className="w-5 h-5" />}
@@ -317,7 +317,7 @@ export default function Analytics() {
                       <div key={index} className="space-y-2">
                         <div className="flex justify-between items-center">
                           <span className="font-medium text-foreground">{pattern.type}</span>
-                          <span className="text-sm text-muted-foreground">{pattern.efficiency} MPG</span>
+                          <span className="text-sm text-muted-foreground">{pattern.efficiency} kmpl</span>
                         </div>
                         <div className="w-full bg-muted rounded-full h-2">
                           <div 

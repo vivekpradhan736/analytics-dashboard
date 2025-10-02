@@ -21,64 +21,65 @@ import { LineChart, Line, XAxis, YAxis, CartesianGrid, Tooltip, ResponsiveContai
 // Mock resale value data
 const mockResaleData = {
   currentValue: {
-    market: 18750,
-    tradeIn: 15000,
-    privateParty: 21500,
-    certified: 19800
+    market: 480000,      // Market resale value (avg buyer price)
+    tradeIn: 430000,     // Dealer trade-in offer (lower)
+    privateParty: 510000, // Direct sale to buyer
+    certified: 500000    // Certified pre-owned dealer price
   },
-  baseValue: 22000,
+  baseValue: 750000,
   depreciation: {
-    mileage: 2100,
-    condition: 1150,
-    total: 3250
+    mileage: 120000,     // Reduction due to ~45,000 km
+    condition: 70000,    // Minor wear/tear, scratches
+    total: 190000        // Total depreciation
   },
   factors: {
-    mileage: 45000,
-    healthScore: 85,
+    mileage: 45000,      // Actual odometer
+    healthScore: 82,     // Out of 100
     marketTrend: 'stable',
     demand: 'high'
   },
   valueHistory: [
-    { month: 'Jan', value: 19200 },
-    { month: 'Feb', value: 19050 },
-    { month: 'Mar', value: 18900 },
-    { month: 'Apr', value: 18850 },
-    { month: 'May', value: 18750 },
-    { month: 'Jun', value: 18700 }
+    { month: 'Jan', value: 505000 },
+    { month: 'Feb', value: 502000 },
+    { month: 'Mar', value: 498000 },
+    { month: 'Apr', value: 492000 },
+    { month: 'May', value: 486000 },
+    { month: 'Jun', value: 480000 }
   ],
   marketComparison: [
-    { category: 'Excellent', value: 21000, count: 12 },
-    { category: 'Good', value: 18750, count: 28 },
-    { category: 'Fair', value: 16500, count: 35 },
-    { category: 'Poor', value: 13200, count: 15 }
+    { category: 'Excellent', value: 520000, count: 10 },
+    { category: 'Good', value: 480000, count: 30 },
+    { category: 'Fair', value: 450000, count: 25 },
+    { category: 'Poor', value: 390000, count: 12 }
   ],
   improvements: [
     {
-      action: "Fix catalytic converter",
-      currentCost: 850,
-      valueIncrease: 1500,
-      roi: 76,
-      timeframe: "2-3 weeks",
+      action: "Replace worn tires",
+      currentCost: 30000,
+      valueIncrease: 45000,
+      roi: 50,
+      timeframe: "1 week",
       impact: "High"
     },
     {
-      action: "Address fuel system lean condition",
-      currentCost: 400,
-      valueIncrease: 800,
-      roi: 100,
-      timeframe: "1 week",
+      action: "Full body polishing & detailing",
+      currentCost: 8000,
+      valueIncrease: 20000,
+      roi: 150,
+      timeframe: "3 days",
       impact: "Medium"
     },
     {
-      action: "Professional detailing",
-      currentCost: 200,
-      valueIncrease: 500,
-      roi: 150,
-      timeframe: "2 days",
+      action: "Fix AC cooling issue",
+      currentCost: 15000,
+      valueIncrease: 25000,
+      roi: 66,
+      timeframe: "1 week",
       impact: "Medium"
     }
   ]
 };
+
 
 const getImpactColor = (impact: string) => {
   switch (impact.toLowerCase()) {
@@ -151,7 +152,7 @@ export default function ResaleValue() {
             <CardContent>
               <div className="space-y-4">
                 <div className="flex justify-between items-center p-3 bg-gradient-subtle rounded-lg">
-                  <span className="font-medium text-foreground">Base Value (2019 Toyota Camry)</span>
+                  <span className="font-medium text-foreground">Base Value (2019 Tata Safari)</span>
                   <span className="font-bold text-lg">₹{mockResaleData.baseValue.toLocaleString()}</span>
                 </div>
                 

@@ -70,7 +70,7 @@ const pendingBookings = [
     customerName: 'Rajesh Kumar',
     phone: '+91 98765 43210',
     service: 'Oil Change',
-    vehicle: '2020 Maruti Swift',
+    vehicle: '2020 Mahindra Thar',
     city: 'Mumbai',
     scheduledDate: '2024-09-28',
     status: 'confirmed'
@@ -80,7 +80,7 @@ const pendingBookings = [
     customerName: 'Priya Sharma',
     phone: '+91 87654 32109',
     service: 'Brake Inspection',
-    vehicle: '2019 Honda City',
+    vehicle: '2019 Tata Nexon',
     city: 'Delhi',
     scheduledDate: '2024-09-29',
     status: 'pending'
@@ -90,7 +90,7 @@ const pendingBookings = [
     customerName: 'Amit Singh',
     phone: '+91 76543 21098',
     service: 'Battery Test',
-    vehicle: '2021 Hyundai Creta',
+    vehicle: '2021 Mahindra BE 6',
     city: 'Bangalore',
     scheduledDate: '2024-09-30',
     status: 'confirmed'
@@ -104,7 +104,7 @@ const recentCustomers = [
     phone: '+91 99887 65432',
     totalBookings: 12,
     lastService: '2024-09-20',
-    vehicle: '2018 Toyota Innova',
+    vehicle: '2018 Mahindra Thar',
     city: 'Ahmedabad'
   },
   {

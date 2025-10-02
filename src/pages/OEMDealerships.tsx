@@ -16,8 +16,8 @@ const OEMDealerships = () => {
   const customerVehicles = [
     {
       vin: "1HGBH41JXMN109186",
-      owner: "John Smith",
-      model: "2020 Toyota Camry",
+      owner: "Rajesh Kumar",
+      model: "2020 Mahindra Thar",
       mileage: 52000,
       lastService: "2024-08-15",
       nextService: "2024-11-15",
@@ -28,8 +28,8 @@ const OEMDealerships = () => {
     },
     {
       vin: "2T1BURHE1JC123456", 
-      owner: "Sarah Johnson",
-      model: "2019 Honda Accord",
+      owner: "Priya Sharma",
+      model: "2019 Tata Nexon",
       mileage: 48000,
       lastService: "2024-09-01",
       nextService: "2024-12-01",
@@ -40,8 +40,8 @@ const OEMDealerships = () => {
     },
     {
       vin: "3FA6P0H75JR654321",
-      owner: "Mike Davis", 
-      model: "2021 Ford Transit",
+      owner: "Amit Singh", 
+      model: "2021 Tata Safari",
       mileage: 65000,
       lastService: "2024-07-20",
       nextService: "2024-10-20",
@@ -131,7 +131,7 @@ const OEMDealerships = () => {
               Proactive customer engagement and inventory optimization
             </p>
           </div>
-          <div className="flex gap-2">
+          <div className="flex sm:flex-row flex-col gap-2">
             <Button variant="outline" size="sm">
               <Bell className="w-4 h-4 mr-2" />
               Send Alerts
@@ -162,7 +162,7 @@ const OEMDealerships = () => {
               <Wrench className="h-4 w-4 text-green-500" />
             </CardHeader>
             <CardContent>
-              <div className="text-2xl font-bold text-green-500">₹182K</div>
+              <div className="text-2xl font-bold text-green-500">₹32L</div>
               <p className="text-xs text-muted-foreground">Monthly service income</p>
             </CardContent>
           </Card>
@@ -191,11 +191,11 @@ const OEMDealerships = () => {
         </div>
 
         <Tabs defaultValue="customer-engagement" className="space-y-4">
-          <TabsList>
-            <TabsTrigger value="customer-engagement">Customer Engagement</TabsTrigger>
-            <TabsTrigger value="parts-lifecycle">Parts Lifecycle</TabsTrigger>
-            <TabsTrigger value="recall-management">Recall Management</TabsTrigger>
-            <TabsTrigger value="inventory-analytics">Inventory Analytics</TabsTrigger>
+          <TabsList className="grid w-full grid-cols-4">
+            <TabsTrigger value="customer-engagement" className="line-clamp-1">Customer Engagement</TabsTrigger>
+            <TabsTrigger value="parts-lifecycle" className="line-clamp-1">Parts Lifecycle</TabsTrigger>
+            <TabsTrigger value="recall-management" className="line-clamp-1">Recall Management</TabsTrigger>
+            <TabsTrigger value="inventory-analytics" className="line-clamp-1">Inventory Analytics</TabsTrigger>
           </TabsList>
 
           <TabsContent value="customer-engagement" className="space-y-4">
@@ -215,7 +215,7 @@ const OEMDealerships = () => {
                         <div className="flex-1">
                           <div className="font-medium">{vehicle.owner}</div>
                           <div className="text-sm text-muted-foreground">
-                            {vehicle.model} • {vehicle.mileage.toLocaleString()} mi
+                            {vehicle.model} • {vehicle.mileage.toLocaleString()} km
                           </div>
                           <div className="text-xs text-muted-foreground">
                             Next Service: {vehicle.nextService}
@@ -298,7 +298,7 @@ const OEMDealerships = () => {
                           />
                         </div>
                         <div className="text-xs text-muted-foreground">
-                          {part.currentMileage.toLocaleString()} / {part.averageLife.toLocaleString()} miles
+                          {part.currentMileage.toLocaleString()} / {part.averageLife.toLocaleString()} kms
                         </div>
                       </div>
                     ))}

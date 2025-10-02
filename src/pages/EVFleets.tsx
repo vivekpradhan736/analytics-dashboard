@@ -91,8 +91,8 @@ const EVFleets = () => {
   ];
 
   const energyEfficiency = [
-    { metric: "Fleet Average", value: 3.9, unit: "mi/kWh", target: 4.2, status: "Below" },
-    { metric: "Best Performer", value: 4.8, unit: "mi/kWh", target: 4.2, status: "Above" },
+    { metric: "Fleet Average", value: 3.9, unit: "km/kWh", target: 4.2, status: "Below" },
+    { metric: "Best Performer", value: 4.8, unit: "km/kWh", target: 4.2, status: "Above" },
     { metric: "Charging Efficiency", value: 91, unit: "%", target: 90, status: "Above" },
     { metric: "Regenerative Braking", value: 22, unit: "%", target: 25, status: "Below" }
   ];
@@ -126,7 +126,7 @@ const EVFleets = () => {
               Battery optimization and sustainable fleet operations
             </p>
           </div>
-          <div className="flex gap-2">
+          <div className="flex sm:flex-row flex-col gap-2">
             <Button variant="outline" size="sm">
               <MapPin className="w-4 h-4 mr-2" />
               Fleet Map
@@ -186,11 +186,11 @@ const EVFleets = () => {
         </div>
 
         <Tabs defaultValue="battery-health" className="space-y-4">
-          <TabsList>
-            <TabsTrigger value="battery-health">Battery Health</TabsTrigger>
-            <TabsTrigger value="charging-optimization">Charging Optimization</TabsTrigger>
-            <TabsTrigger value="geographic-analysis">Geographic Analysis</TabsTrigger>
-            <TabsTrigger value="sustainability">Sustainability Metrics</TabsTrigger>
+          <TabsList className="grid w-full grid-cols-4">
+            <TabsTrigger value="battery-health" className="line-clamp-1">Battery Health</TabsTrigger>
+            <TabsTrigger value="charging-optimization" className="line-clamp-1" >Charging Optimization</TabsTrigger>
+            <TabsTrigger value="geographic-analysis" className="line-clamp-1">Geographic Analysis</TabsTrigger>
+            <TabsTrigger value="sustainability" className="line-clamp-1">Sustainability Metrics</TabsTrigger>
           </TabsList>
 
           <TabsContent value="battery-health" className="space-y-4">
@@ -211,7 +211,7 @@ const EVFleets = () => {
                           <div>
                             <div className="font-medium">{vehicle.id} - {vehicle.make} {vehicle.model}</div>
                             <div className="text-sm text-muted-foreground">
-                              {vehicle.range} mi range • {vehicle.chargeCycles} cycles
+                              {vehicle.range} km range • {vehicle.chargeCycles} cycles
                             </div>
                           </div>
                           <div className={`px-2 py-1 rounded text-sm ${getHealthColor(vehicle.batteryHealth)}`}>
@@ -382,7 +382,7 @@ const EVFleets = () => {
                         </div>
                         <div className="text-center">
                           <div className="text-lg font-semibold">{location.avgRange}</div>
-                          <div className="text-xs text-muted-foreground">Avg Range (mi)</div>
+                          <div className="text-xs text-muted-foreground">Avg Range (km)</div>
                         </div>
                         <div className="text-center">
                           <div className="text-lg font-semibold">{location.climate}</div>

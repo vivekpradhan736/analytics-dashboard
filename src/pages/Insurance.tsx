@@ -17,8 +17,8 @@ const Insurance = () => {
   const claimsData = [
     {
       id: "CLM001",
-      policyHolder: "John Smith",
-      vehicle: "2020 Toyota Camry",
+      policyHolder: "Rajesh Kumar",
+      vehicle: "2020 Tata Safari",
       claimType: "Engine Damage",
       amount: 4500,
       status: "Pending",
@@ -29,8 +29,8 @@ const Insurance = () => {
     },
     {
       id: "CLM002",
-      policyHolder: "Sarah Johnson",
-      vehicle: "2019 Honda Accord",
+      policyHolder: "Priya Sharma",
+      vehicle: "2019 Mahindra Thar",
       claimType: "Collision",
       amount: 8200,
       status: "Verified",
@@ -41,8 +41,8 @@ const Insurance = () => {
     },
     {
       id: "CLM003",
-      policyHolder: "Mike Davis",
-      vehicle: "2021 Ford Transit",
+      policyHolder: "Amit Singh",
+      vehicle: "2021 Tata Nexon",
       claimType: "Transmission Issue",
       amount: 3200,
       status: "Flagged",
@@ -106,7 +106,7 @@ const Insurance = () => {
               OBD-powered claim verification, risk assessment, and fraud detection
             </p>
           </div>
-          <div className="flex gap-2">
+          <div className="flex sm:flex-row flex-col gap-2">
             <Button variant="outline" size="sm">
               <Search className="w-4 h-4 mr-2" />
               Search Claims
@@ -148,7 +148,7 @@ const Insurance = () => {
               <DollarSign className="h-4 w-4 text-blue-500" />
             </CardHeader>
             <CardContent>
-              <div className="text-2xl font-bold text-blue-500">₹2.3M</div>
+              <div className="text-2xl font-bold text-blue-500">₹12.3L</div>
               <p className="text-xs text-muted-foreground">Fraud prevention YTD</p>
             </CardContent>
           </Card>
@@ -166,11 +166,11 @@ const Insurance = () => {
         </div>
 
         <Tabs defaultValue="claims" className="space-y-4">
-          <TabsList>
-            <TabsTrigger value="claims">Claims Verification</TabsTrigger>
-            <TabsTrigger value="risk-scoring">Risk Scoring</TabsTrigger>
-            <TabsTrigger value="fraud-detection">Fraud Detection</TabsTrigger>
-            <TabsTrigger value="premium-optimization">Premium Optimization</TabsTrigger>
+          <TabsList className="grid w-full grid-cols-4">
+            <TabsTrigger value="claims" className="line-clamp-1">Claims Verification</TabsTrigger>
+            <TabsTrigger value="risk-scoring" className="line-clamp-1">Risk Scoring</TabsTrigger>
+            <TabsTrigger value="fraud-detection" className="line-clamp-1">Fraud Detection</TabsTrigger>
+            <TabsTrigger value="premium-optimization" className="line-clamp-1">Premium Optimization</TabsTrigger>
           </TabsList>
 
           <TabsContent value="claims" className="space-y-4">

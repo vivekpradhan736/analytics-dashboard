@@ -17,8 +17,8 @@ const FleetLogistics = () => {
   const fleetVehicles = [
     {
       id: "FL001", 
-      make: "Toyota", 
-      model: "Camry", 
+      make: "Mahindra", 
+      model: "Thar", 
       year: 2020,
       riskScore: 85,
       mileage: 52000,
@@ -31,8 +31,8 @@ const FleetLogistics = () => {
     },
     {
       id: "FL002",
-      make: "Honda", 
-      model: "Accord", 
+      make: "Tata", 
+      model: "Nexon", 
       year: 2019,
       riskScore: 45,
       mileage: 48000,
@@ -45,8 +45,8 @@ const FleetLogistics = () => {
     },
     {
       id: "FL003",
-      make: "Ford",
-      model: "Transit",
+      make: "Tata",
+      model: "Safari",
       year: 2021,
       riskScore: 72,
       mileage: 65000,
@@ -108,7 +108,7 @@ const FleetLogistics = () => {
               Predictive analytics and maintenance scheduling for optimal fleet operations
             </p>
           </div>
-          <div className="flex gap-2">
+          <div className="flex sm:flex-row flex-col gap-2">
             <Button variant="outline" size="sm">
               <MapPin className="w-4 h-4 mr-2" />
               Live Tracking
@@ -161,18 +161,18 @@ const FleetLogistics = () => {
               <Fuel className="h-4 w-4 text-muted-foreground" />
             </CardHeader>
             <CardContent>
-              <div className="text-2xl font-bold">25.8 MPG</div>
+              <div className="text-2xl font-bold">25.8 kmpl</div>
               <p className="text-xs text-muted-foreground">+2.3% from last month</p>
             </CardContent>
           </Card>
         </div>
 
         <Tabs defaultValue="risk-dashboard" className="space-y-4">
-          <TabsList>
-            <TabsTrigger value="risk-dashboard">Risk Dashboard</TabsTrigger>
-            <TabsTrigger value="maintenance">Maintenance Scheduling</TabsTrigger>
-            <TabsTrigger value="analytics">Fleet Analytics</TabsTrigger>
-            <TabsTrigger value="cost-savings">Cost Optimization</TabsTrigger>
+          <TabsList className="grid w-full grid-cols-4">
+            <TabsTrigger value="risk-dashboard" className="line-clamp-1">Risk Dashboard</TabsTrigger>
+            <TabsTrigger value="maintenance" className="line-clamp-1">Maintenance Scheduling</TabsTrigger>
+            <TabsTrigger value="analytics" className="line-clamp-1">Fleet Analytics</TabsTrigger>
+            <TabsTrigger value="cost-savings" className="line-clamp-1">Cost Optimization</TabsTrigger>
           </TabsList>
 
           <TabsContent value="risk-dashboard" className="space-y-4">
@@ -210,7 +210,7 @@ const FleetLogistics = () => {
                         <div>
                           <div className="font-medium">{vehicle.id} - {vehicle.make} {vehicle.model}</div>
                           <div className="text-sm text-muted-foreground">
-                            {vehicle.mileage.toLocaleString()} miles • {vehicle.location}
+                            {vehicle.mileage.toLocaleString()} kms • {vehicle.location}
                           </div>
                         </div>
                         <div className="flex items-center gap-3">
@@ -278,7 +278,7 @@ const FleetLogistics = () => {
                     <XAxis dataKey="month" />
                     <YAxis />
                     <Tooltip />
-                    <Line type="monotone" dataKey="efficiency" stroke="#2563eb" name="MPG" />
+                    <Line type="monotone" dataKey="efficiency" stroke="#2563eb" name="kmpl" />
                   </LineChart>
                 </ResponsiveContainer>
               </CardContent>
