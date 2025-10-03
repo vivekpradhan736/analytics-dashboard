@@ -11,7 +11,7 @@ import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from "@/
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
 import { Label } from "@/components/ui/label";
 import { Textarea } from "@/components/ui/textarea";
-import { Battery, Zap, MapPin, TrendingUp, Thermometer, Clock, Leaf, BarChart3, Activity, AlertTriangle, Award, BookOpen, Calendar, Calculator, CheckCircle, Download, MessageSquare, PlayCircle, Sparkles, Target, Users } from "lucide-react";
+import { Battery, Zap, MapPin, TrendingUp, Thermometer, Clock, Leaf, BarChart3, Activity, AlertTriangle, Award, BookOpen, Calendar, CheckCircle, Download, MessageSquare, PlayCircle, Sparkles, Target, Users } from "lucide-react";
 import { LineChart, Line, XAxis, YAxis, CartesianGrid, Tooltip, ResponsiveContainer, AreaChart, Area, PieChart, Pie, Cell, RadialBarChart, RadialBar, BarChart, Bar, Legend } from "recharts";
 
 const EVFleets = () => {
@@ -882,7 +882,7 @@ const EVFleets = () => {
             <Card>
               <CardHeader>
                 <CardTitle className="flex items-center gap-2">
-                  <Calculator className="w-5 h-5" />
+                  <Zap className="w-5 h-5" />
                   Charging Duration Calculator
                 </CardTitle>
                 <CardDescription>Estimate charge times & voltage requirements</CardDescription>
