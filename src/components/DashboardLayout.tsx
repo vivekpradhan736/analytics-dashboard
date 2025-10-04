@@ -20,6 +20,7 @@ export function DashboardLayout({ children }: DashboardLayoutProps) {
           <header className="sticky top-0 h-16 w-full border-b bg-card md:px-6 px-3 flex items-center justify-between z-50">
             <div className="flex items-center gap-4 w-[50%]">
               <SidebarTrigger className="text-muted-foreground hover:text-foreground" />
+                <img src="./ForWhite.svg" alt="ENGENX" className="w-32 h-5 object-cover md:hidden" />
               <div className="relative lg:w-96 md:w-64 sm:w-72 w-32">
                 <Search className="absolute left-3 top-1/2 transform -translate-y-1/2 text-muted-foreground w-4 h-4" />
                 <Input 

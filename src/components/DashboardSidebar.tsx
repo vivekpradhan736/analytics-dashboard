@@ -61,14 +61,19 @@ export function DashboardSidebar() {
       <SidebarContent className="bg-white">
         {/* Brand Header */}
         <div className="p-4 border-b">
-          <div className="flex items-center gap-3">
+          <div className={`flex items-center gap-3  ${collapsed && "w-8 h-8"} `}>
             {/* <div className="w-8 h-8 bg-gradient-primary rounded-lg flex items-center justify-center">
               <Car className="w-5 h-5 text-white" />
             </div> */}
             {!collapsed && (
-              <div>
+              <div className="py-1.5">
                 <img src="./ForWhite.svg" alt="ENGENX" className="w-32 h-5 object-cover" />
-                <p className="text-xs text-muted-foreground">Analytics Dashboard</p>
+                {/* <p className="text-xs text-muted-foreground">Analytics Dashboard</p> */}
+              </div>
+            )}
+            {collapsed && (
+              <div className="">
+                <img src="./favicon.png" alt="ENGENX" className="pr-2 object-cover " />
               </div>
             )}
           </div>
