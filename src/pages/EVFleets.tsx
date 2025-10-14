@@ -11,13 +11,16 @@ import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from "@/
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
 import { Label } from "@/components/ui/label";
 import { Textarea } from "@/components/ui/textarea";
-import { Battery, Zap, MapPin, TrendingUp, Thermometer, Clock, Leaf, BarChart3, Activity, AlertTriangle, Award, BookOpen, Calendar, CheckCircle, Download, MessageSquare, PlayCircle, Sparkles, Target, Users } from "lucide-react";
+import { Dialog, DialogContent, DialogDescription, DialogHeader, DialogTitle } from "@/components/ui/dialog";
+import { Battery, Zap, MapPin, TrendingUp, Thermometer, Clock, Leaf, BarChart3, Activity, AlertTriangle, Award, BookOpen, Calendar, CheckCircle, Download, MessageSquare, PlayCircle, Sparkles, Target, Users, Gauge, Route, Wrench } from "lucide-react";
 import { LineChart, Line, XAxis, YAxis, CartesianGrid, Tooltip, ResponsiveContainer, AreaChart, Area, PieChart, Pie, Cell, RadialBarChart, RadialBar, BarChart, Bar, Legend } from "recharts";
 
 const EVFleets = () => {
   const [selectedVehicle, setSelectedVehicle] = useState("all");
   const [chargeTime, setChargeTime] = useState({ battery: 60, chargerLevel: "level2" });
   const [costInputs, setCostInputs] = useState({ evRate: 8, iceRate: 95 });
+  const [bmsModalOpen, setBmsModalOpen] = useState(false);
+  const [selectedBmsVehicle, setSelectedBmsVehicle] = useState<any>(null);
   
   const evFleetVehicles = [
     {
@@ -32,7 +35,17 @@ const EVFleets = () => {
       location: "Mumbai, India",
       temperature: 68,
       efficiency: 4.1,
-      lastCharged: "2024-09-26 08:30"
+      lastCharged: "2024-09-26 08:30",
+      voltage: 385.2,
+      batteryCapacity: 59,
+      cellVoltageMin: 3.62,
+      cellVoltageMax: 3.68,
+      chargingStatus: "Not Charging",
+      estimatedTimeToFull: null,
+      lastMaintenanceDate: "2024-08-15",
+      nextMaintenanceDate: "2024-12-15",
+      totalEnergyConsumed: 14580,
+      regenerativeBrakingEfficiency: 18.5
     },
     {
       id: "EV002", 
@@ -46,7 +59,17 @@ const EVFleets = () => {
       location: "New Delhi, India",
       temperature: 84,
       efficiency: 3.8,
-      lastCharged: "2024-09-25 19:45"
+      lastCharged: "2024-09-25 19:45",
+      voltage: 312.8,
+      batteryCapacity: 30.2,
+      cellVoltageMin: 3.45,
+      cellVoltageMax: 3.52,
+      chargingStatus: "Charging",
+      estimatedTimeToFull: "2h 15m",
+      lastMaintenanceDate: "2024-07-10",
+      nextMaintenanceDate: "2024-11-10",
+      totalEnergyConsumed: 12940,
+      regenerativeBrakingEfficiency: 15.2
     },
     {
       id: "EV003",
@@ -60,9 +83,58 @@ const EVFleets = () => {
       location: "Kolkata, India",
       temperature: 95,
       efficiency: 3.9,
-      lastCharged: "2024-09-26 14:15"
+      lastCharged: "2024-09-26 14:15",
+      voltage: 697.5,
+      batteryCapacity: 72.6,
+      cellVoltageMin: 3.71,
+      cellVoltageMax: 3.75,
+      chargingStatus: "Not Charging",
+      estimatedTimeToFull: null,
+      lastMaintenanceDate: "2024-09-01",
+      nextMaintenanceDate: "2025-01-01",
+      totalEnergyConsumed: 11340,
+      regenerativeBrakingEfficiency: 21.3
     }
   ];
+
+  const handleVehicleClick = (vehicle: any) => {
+    setSelectedBmsVehicle(vehicle);
+    setBmsModalOpen(true);
+  };
+
+  const getBmsChargingHistory = (vehicleId: string) => {
+    const baseData = [
+      { time: "00:00", soc: 45, voltage: 350, current: 0 },
+      { time: "02:00", soc: 48, voltage: 355, current: 15 },
+      { time: "04:00", soc: 55, voltage: 365, current: 28 },
+      { time: "06:00", soc: 68, voltage: 378, current: 35 },
+      { time: "08:00", soc: 78, voltage: 385, current: 22 },
+      { time: "10:00", soc: 82, voltage: 388, current: 12 },
+      { time: "12:00", soc: 85, voltage: 390, current: 8 },
+      { time: "14:00", soc: 85, voltage: 390, current: 0 }
+    ];
+    return baseData;
+  };
+
+  const getBmsTempHistory = (vehicleId: string) => {
+    return [
+      { time: "00:00", batteryTemp: 65, ambientTemp: 58 },
+      { time: "04:00", batteryTemp: 68, ambientTemp: 55 },
+      { time: "08:00", batteryTemp: 72, ambientTemp: 62 },
+      { time: "12:00", batteryTemp: 78, ambientTemp: 72 },
+      { time: "16:00", batteryTemp: 82, ambientTemp: 75 },
+      { time: "20:00", batteryTemp: 70, ambientTemp: 68 }
+    ];
+  };
+
+  const getBmsDiagnostics = (vehicleId: string) => {
+    return [
+      { code: "BMS_001", status: "Normal", description: "Battery voltage within range", severity: "info" },
+      { code: "BMS_002", status: "Warning", description: "Cell voltage imbalance detected", severity: "warning" },
+      { code: "BMS_003", status: "Normal", description: "Temperature regulation optimal", severity: "info" },
+      { code: "BMS_004", status: "Normal", description: "Charge/discharge cycles nominal", severity: "info" }
+    ];
+  };
 
   const batteryHealthTrends = [
     { month: "Jan", mahindra: 94, tata: 88, hyundai: 97, avgTemp: 45 },
@@ -1029,7 +1101,11 @@ const EVFleets = () => {
                 <CardContent>
                   <div className="space-y-4">
                     {evFleetVehicles.map((vehicle) => (
-                      <div key={vehicle.id} className="p-3 border rounded-lg">
+                      <div 
+                        key={vehicle.id} 
+                        className="p-3 border rounded-lg cursor-pointer hover:border-primary transition-colors"
+                        onClick={() => handleVehicleClick(vehicle)}
+                      >
                         <div className="flex items-center justify-between mb-2">
                           <div>
                             <div className="font-medium">{vehicle.id} - {vehicle.make} {vehicle.model}</div>
@@ -1037,8 +1113,16 @@ const EVFleets = () => {
                               {vehicle.range} km range • {vehicle.chargeCycles} cycles
                             </div>
                           </div>
-                          <div className={`px-2 py-1 rounded text-sm ${getHealthColor(vehicle.batteryHealth)}`}>
-                            {vehicle.batteryHealth}% SOH
+                          <div className="flex items-center gap-2">
+                            <div className={`px-2 py-1 rounded text-sm ${getHealthColor(vehicle.batteryHealth)}`}>
+                              {vehicle.batteryHealth}% SOH
+                            </div>
+                            <Button size="sm" variant="outline" onClick={(e) => {
+                              e.stopPropagation();
+                              handleVehicleClick(vehicle);
+                            }}>
+                              View BMS
+                            </Button>
                           </div>
                         </div>
                         
@@ -1299,6 +1383,515 @@ const EVFleets = () => {
           </TabsContent>
         </Tabs>
       </div>
+
+      {/* BMS Information Modal */}
+      <Dialog open={bmsModalOpen} onOpenChange={setBmsModalOpen}>
+        <DialogContent className="max-w-6xl max-h-[90vh] overflow-y-auto">
+          <DialogHeader>
+            <DialogTitle className="flex items-center gap-2">
+              <Battery className="w-5 h-5" />
+              Battery Management System - {selectedBmsVehicle?.id} ({selectedBmsVehicle?.make} {selectedBmsVehicle?.model})
+            </DialogTitle>
+            <DialogDescription>
+              Real-time BMS monitoring and diagnostics for {selectedBmsVehicle?.year} model
+            </DialogDescription>
+          </DialogHeader>
+
+          {selectedBmsVehicle && (
+            <Tabs defaultValue="overview" className="w-full">
+              <TabsList className="grid w-full grid-cols-5">
+                <TabsTrigger value="overview">Overview</TabsTrigger>
+                <TabsTrigger value="performance">Performance</TabsTrigger>
+                <TabsTrigger value="location">Location</TabsTrigger>
+                <TabsTrigger value="maintenance">Maintenance</TabsTrigger>
+                <TabsTrigger value="diagnostics">Diagnostics</TabsTrigger>
+              </TabsList>
+
+              {/* Overview Tab */}
+              <TabsContent value="overview" className="space-y-4 mt-4">
+                <div className="grid gap-4 md:grid-cols-2 lg:grid-cols-4">
+                  <Card>
+                    <CardHeader className="pb-2">
+                      <CardTitle className="text-sm font-medium flex items-center gap-2">
+                        <Battery className="w-4 h-4" />
+                        State of Charge
+                      </CardTitle>
+                    </CardHeader>
+                    <CardContent>
+                      <div className="text-3xl font-bold">{selectedBmsVehicle.currentSoC}%</div>
+                      <Progress value={selectedBmsVehicle.currentSoC} className="mt-2" />
+                      <p className="text-xs text-muted-foreground mt-2">
+                        Estimated Range: {selectedBmsVehicle.range} km
+                      </p>
+                    </CardContent>
+                  </Card>
+
+                  <Card>
+                    <CardHeader className="pb-2">
+                      <CardTitle className="text-sm font-medium flex items-center gap-2">
+                        <Activity className="w-4 h-4" />
+                        State of Health
+                      </CardTitle>
+                    </CardHeader>
+                    <CardContent>
+                      <div className={`text-3xl font-bold ${selectedBmsVehicle.batteryHealth >= 90 ? 'text-green-600' : selectedBmsVehicle.batteryHealth >= 80 ? 'text-yellow-600' : 'text-red-600'}`}>
+                        {selectedBmsVehicle.batteryHealth}%
+                      </div>
+                      <Progress value={selectedBmsVehicle.batteryHealth} className="mt-2" />
+                      <p className="text-xs text-muted-foreground mt-2">
+                        {selectedBmsVehicle.chargeCycles} charge cycles
+                      </p>
+                    </CardContent>
+                  </Card>
+
+                  <Card>
+                    <CardHeader className="pb-2">
+                      <CardTitle className="text-sm font-medium flex items-center gap-2">
+                        <Thermometer className="w-4 h-4" />
+                        Battery Temperature
+                      </CardTitle>
+                    </CardHeader>
+                    <CardContent>
+                      <div className="text-3xl font-bold">{selectedBmsVehicle.temperature}°F</div>
+                      <Badge variant={selectedBmsVehicle.temperature > 90 ? "destructive" : "default"} className="mt-2">
+                        {selectedBmsVehicle.temperature > 90 ? "High" : "Normal"}
+                      </Badge>
+                      <p className="text-xs text-muted-foreground mt-2">
+                        Optimal: 68-86°F
+                      </p>
+                    </CardContent>
+                  </Card>
+
+                  <Card>
+                    <CardHeader className="pb-2">
+                      <CardTitle className="text-sm font-medium flex items-center gap-2">
+                        <Zap className="w-4 h-4" />
+                        Battery Voltage
+                      </CardTitle>
+                    </CardHeader>
+                    <CardContent>
+                      <div className="text-3xl font-bold">{selectedBmsVehicle.voltage}V</div>
+                      <div className="text-xs text-muted-foreground mt-2 space-y-1">
+                        <div>Min Cell: {selectedBmsVehicle.cellVoltageMin}V</div>
+                        <div>Max Cell: {selectedBmsVehicle.cellVoltageMax}V</div>
+                      </div>
+                    </CardContent>
+                  </Card>
+                </div>
+
+                <div className="grid gap-4 md:grid-cols-2">
+                  <Card>
+                    <CardHeader>
+                      <CardTitle className="flex items-center gap-2">
+                        <TrendingUp className="w-5 h-5" />
+                        Charging Status
+                      </CardTitle>
+                    </CardHeader>
+                    <CardContent>
+                      <div className="space-y-4">
+                        <div className="flex items-center justify-between">
+                          <span className="text-sm font-medium">Status:</span>
+                          <Badge variant={selectedBmsVehicle.chargingStatus === "Charging" ? "default" : "secondary"}>
+                            {selectedBmsVehicle.chargingStatus}
+                          </Badge>
+                        </div>
+                        {selectedBmsVehicle.estimatedTimeToFull && (
+                          <div className="flex items-center justify-between">
+                            <span className="text-sm font-medium">Time to Full:</span>
+                            <span className="text-sm">{selectedBmsVehicle.estimatedTimeToFull}</span>
+                          </div>
+                        )}
+                        <div className="flex items-center justify-between">
+                          <span className="text-sm font-medium">Last Charged:</span>
+                          <span className="text-sm">{selectedBmsVehicle.lastCharged}</span>
+                        </div>
+                        <div className="flex items-center justify-between">
+                          <span className="text-sm font-medium">Battery Capacity:</span>
+                          <span className="text-sm">{selectedBmsVehicle.batteryCapacity} kWh</span>
+                        </div>
+                      </div>
+                    </CardContent>
+                  </Card>
+
+                  <Card>
+                    <CardHeader>
+                      <CardTitle className="flex items-center gap-2">
+                        <BarChart3 className="w-5 h-5" />
+                        Energy Metrics
+                      </CardTitle>
+                    </CardHeader>
+                    <CardContent>
+                      <div className="space-y-4">
+                        <div className="flex items-center justify-between">
+                          <span className="text-sm font-medium">Efficiency:</span>
+                          <span className="text-sm font-bold text-green-600">{selectedBmsVehicle.efficiency} km/kWh</span>
+                        </div>
+                        <div className="flex items-center justify-between">
+                          <span className="text-sm font-medium">Total Energy Used:</span>
+                          <span className="text-sm">{selectedBmsVehicle.totalEnergyConsumed} kWh</span>
+                        </div>
+                        <div className="flex items-center justify-between">
+                          <span className="text-sm font-medium">Regenerative Braking:</span>
+                          <span className="text-sm">{selectedBmsVehicle.regenerativeBrakingEfficiency}%</span>
+                        </div>
+                        <div className="flex items-center justify-between">
+                          <span className="text-sm font-medium">Estimated Range:</span>
+                          <span className="text-sm font-bold">{selectedBmsVehicle.range} km</span>
+                        </div>
+                      </div>
+                    </CardContent>
+                  </Card>
+                </div>
+              </TabsContent>
+
+              {/* Performance Tab */}
+              <TabsContent value="performance" className="space-y-4 mt-4">
+                <Card>
+                  <CardHeader>
+                    <CardTitle>Charging & Discharging History</CardTitle>
+                    <CardDescription>24-hour SOC, voltage, and current trends</CardDescription>
+                  </CardHeader>
+                  <CardContent>
+                    <ResponsiveContainer width="100%" height={300}>
+                      <LineChart data={getBmsChargingHistory(selectedBmsVehicle.id)}>
+                        <CartesianGrid strokeDasharray="3 3" />
+                        <XAxis dataKey="time" />
+                        <YAxis yAxisId="left" />
+                        <YAxis yAxisId="right" orientation="right" />
+                        <Tooltip />
+                        <Legend />
+                        <Line yAxisId="left" type="monotone" dataKey="soc" stroke="#10b981" name="SOC %" strokeWidth={2} />
+                        <Line yAxisId="right" type="monotone" dataKey="voltage" stroke="#3b82f6" name="Voltage (V)" strokeWidth={2} />
+                        <Line yAxisId="right" type="monotone" dataKey="current" stroke="#ef4444" name="Current (A)" strokeWidth={2} />
+                      </LineChart>
+                    </ResponsiveContainer>
+                  </CardContent>
+                </Card>
+
+                <Card>
+                  <CardHeader>
+                    <CardTitle>Temperature Monitoring</CardTitle>
+                    <CardDescription>Battery and ambient temperature trends</CardDescription>
+                  </CardHeader>
+                  <CardContent>
+                    <ResponsiveContainer width="100%" height={250}>
+                      <AreaChart data={getBmsTempHistory(selectedBmsVehicle.id)}>
+                        <CartesianGrid strokeDasharray="3 3" />
+                        <XAxis dataKey="time" />
+                        <YAxis />
+                        <Tooltip />
+                        <Legend />
+                        <Area type="monotone" dataKey="batteryTemp" stroke="#ef4444" fill="#ef4444" fillOpacity={0.6} name="Battery Temp (°F)" />
+                        <Area type="monotone" dataKey="ambientTemp" stroke="#3b82f6" fill="#3b82f6" fillOpacity={0.3} name="Ambient Temp (°F)" />
+                      </AreaChart>
+                    </ResponsiveContainer>
+                  </CardContent>
+                </Card>
+
+                <div className="grid gap-4 md:grid-cols-3">
+                  <Card>
+                    <CardHeader className="pb-2">
+                      <CardTitle className="text-sm">Range Prediction</CardTitle>
+                    </CardHeader>
+                    <CardContent>
+                      <div className="text-2xl font-bold text-green-600">{selectedBmsVehicle.range} km</div>
+                      <p className="text-xs text-muted-foreground mt-1">
+                        Based on current SOC and driving patterns
+                      </p>
+                    </CardContent>
+                  </Card>
+
+                  <Card>
+                    <CardHeader className="pb-2">
+                      <CardTitle className="text-sm">Lifecycle Prediction</CardTitle>
+                    </CardHeader>
+                    <CardContent>
+                      <div className="text-2xl font-bold text-blue-600">
+                        {calculateLifecyclePrediction(selectedBmsVehicle.batteryHealth, selectedBmsVehicle.chargeCycles).toFixed(1)} years
+                      </div>
+                      <p className="text-xs text-muted-foreground mt-1">
+                        Estimated remaining battery life
+                      </p>
+                    </CardContent>
+                  </Card>
+
+                  <Card>
+                    <CardHeader className="pb-2">
+                      <CardTitle className="text-sm">Optimal Charging</CardTitle>
+                    </CardHeader>
+                    <CardContent>
+                      <div className="text-2xl font-bold text-purple-600">10 PM - 6 AM</div>
+                      <p className="text-xs text-muted-foreground mt-1">
+                        Recommended time window for best efficiency
+                      </p>
+                    </CardContent>
+                  </Card>
+                </div>
+              </TabsContent>
+
+              {/* Location Tab */}
+              <TabsContent value="location" className="space-y-4 mt-4">
+                <Card>
+                  <CardHeader>
+                    <CardTitle className="flex items-center gap-2">
+                      <MapPin className="w-5 h-5" />
+                      Vehicle Location & Route Planning
+                    </CardTitle>
+                    <CardDescription>GPS tracking and charging station finder</CardDescription>
+                  </CardHeader>
+                  <CardContent>
+                    <div className="space-y-4">
+                      <Alert>
+                        <MapPin className="h-4 w-4" />
+                        <AlertDescription>
+                          <div className="font-medium">Current Location</div>
+                          <div className="text-sm mt-1">{selectedBmsVehicle.location}</div>
+                        </AlertDescription>
+                      </Alert>
+
+                      <div className="p-4 border rounded-lg bg-muted">
+                        <div className="flex items-center justify-center h-48 text-muted-foreground">
+                          <div className="text-center">
+                            <MapPin className="w-12 h-12 mx-auto mb-2" />
+                            <p className="text-sm">Map visualization would appear here</p>
+                            <p className="text-xs mt-1">Showing vehicle location and nearby charging stations</p>
+                          </div>
+                        </div>
+                      </div>
+
+                      <div className="grid gap-4 md:grid-cols-2">
+                        <div>
+                          <h4 className="font-medium mb-2 flex items-center gap-2">
+                            <Route className="w-4 h-4" />
+                            Route Planning
+                          </h4>
+                          <div className="space-y-2 text-sm">
+                            <div className="flex justify-between p-2 border rounded">
+                              <span>Current Range:</span>
+                              <span className="font-medium">{selectedBmsVehicle.range} km</span>
+                            </div>
+                            <div className="flex justify-between p-2 border rounded">
+                              <span>Nearest Station:</span>
+                              <span className="font-medium">2.3 km</span>
+                            </div>
+                            <div className="flex justify-between p-2 border rounded">
+                              <span>Station Type:</span>
+                              <span className="font-medium">DC Fast Charge</span>
+                            </div>
+                          </div>
+                          <Button className="w-full mt-3" size="sm">
+                            <Route className="w-4 h-4 mr-2" />
+                            Plan Route to Station
+                          </Button>
+                        </div>
+
+                        <div>
+                          <h4 className="font-medium mb-2">Nearby Charging Stations</h4>
+                          <div className="space-y-2">
+                            {[
+                              { name: "QuickCharge Hub", distance: "2.3 km", type: "DC Fast", available: 3 },
+                              { name: "City Center Station", distance: "4.7 km", type: "Level 2", available: 8 },
+                              { name: "Highway Stop", distance: "8.1 km", type: "DC Fast", available: 2 }
+                            ].map((station, idx) => (
+                              <div key={idx} className="p-2 border rounded-lg text-xs">
+                                <div className="flex justify-between items-start mb-1">
+                                  <div className="font-medium">{station.name}</div>
+                                  <Badge variant="secondary">{station.distance}</Badge>
+                                </div>
+                                <div className="flex justify-between text-muted-foreground">
+                                  <span>{station.type}</span>
+                                  <span>{station.available} ports available</span>
+                                </div>
+                              </div>
+                            ))}
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  </CardContent>
+                </Card>
+              </TabsContent>
+
+              {/* Maintenance Tab */}
+              <TabsContent value="maintenance" className="space-y-4 mt-4">
+                <div className="grid gap-4 md:grid-cols-2">
+                  <Card>
+                    <CardHeader>
+                      <CardTitle className="flex items-center gap-2">
+                        <Calendar className="w-5 h-5" />
+                        Maintenance Schedule
+                      </CardTitle>
+                      <CardDescription>Predictive maintenance and service alerts</CardDescription>
+                    </CardHeader>
+                    <CardContent>
+                      <div className="space-y-3">
+                        <div className="p-3 border rounded-lg">
+                          <div className="flex justify-between items-start mb-2">
+                            <div>
+                              <div className="font-medium text-sm">Last Service</div>
+                              <div className="text-xs text-muted-foreground">{selectedBmsVehicle.lastMaintenanceDate}</div>
+                            </div>
+                            <Badge variant="secondary">Completed</Badge>
+                          </div>
+                        </div>
+
+                        <div className="p-3 border rounded-lg bg-yellow-50 dark:bg-yellow-950 border-yellow-200">
+                          <div className="flex justify-between items-start mb-2">
+                            <div>
+                              <div className="font-medium text-sm">Next Service Due</div>
+                              <div className="text-xs text-muted-foreground">{selectedBmsVehicle.nextMaintenanceDate}</div>
+                            </div>
+                            <Badge variant="default">Upcoming</Badge>
+                          </div>
+                          <div className="text-xs mt-2">
+                            <div className="font-medium mb-1">Recommended Tasks:</div>
+                            <ul className="list-disc list-inside space-y-1 text-muted-foreground">
+                              <li>Battery thermal management check</li>
+                              <li>Cell voltage balancing</li>
+                              <li>Firmware update</li>
+                              <li>Coolant level inspection</li>
+                            </ul>
+                          </div>
+                        </div>
+
+                        <Alert>
+                          <Wrench className="h-4 w-4" />
+                          <AlertDescription className="text-xs">
+                            Based on usage patterns, next service recommended in 45 days
+                          </AlertDescription>
+                        </Alert>
+                      </div>
+                    </CardContent>
+                  </Card>
+
+                  <Card>
+                    <CardHeader>
+                      <CardTitle className="flex items-center gap-2">
+                        <AlertTriangle className="w-5 h-5" />
+                        Maintenance Alerts
+                      </CardTitle>
+                      <CardDescription>Active warnings and recommendations</CardDescription>
+                    </CardHeader>
+                    <CardContent>
+                      <div className="space-y-3">
+                        {selectedBmsVehicle.temperature > 90 && (
+                          <Alert variant="destructive">
+                            <AlertTriangle className="h-4 w-4" />
+                            <AlertDescription className="text-xs">
+                              <div className="font-medium">High Battery Temperature</div>
+                              <div className="mt-1">Current: {selectedBmsVehicle.temperature}°F - Consider cooling system check</div>
+                            </AlertDescription>
+                          </Alert>
+                        )}
+
+                        {selectedBmsVehicle.batteryHealth < 90 && (
+                          <Alert>
+                            <Activity className="h-4 w-4" />
+                            <AlertDescription className="text-xs">
+                              <div className="font-medium">Battery Health Monitoring</div>
+                              <div className="mt-1">SOH at {selectedBmsVehicle.batteryHealth}% - Continue monitoring degradation rate</div>
+                            </AlertDescription>
+                          </Alert>
+                        )}
+
+                        <div className="p-3 border rounded-lg">
+                          <div className="text-sm font-medium mb-2">Optimization Opportunities</div>
+                          <ul className="text-xs space-y-2 text-muted-foreground">
+                            <li className="flex items-start gap-2">
+                              <CheckCircle className="w-3 h-3 mt-0.5 text-green-600" />
+                              <span>Charge during off-peak hours (10 PM - 6 AM) for 15% cost savings</span>
+                            </li>
+                            <li className="flex items-start gap-2">
+                              <CheckCircle className="w-3 h-3 mt-0.5 text-green-600" />
+                              <span>Maintain SOC between 20-80% for optimal battery longevity</span>
+                            </li>
+                            <li className="flex items-start gap-2">
+                              <CheckCircle className="w-3 h-3 mt-0.5 text-green-600" />
+                              <span>Pre-condition battery in extreme temperatures</span>
+                            </li>
+                          </ul>
+                        </div>
+
+                        <Button className="w-full" size="sm">
+                          <Calendar className="w-4 h-4 mr-2" />
+                          Schedule Maintenance
+                        </Button>
+                      </div>
+                    </CardContent>
+                  </Card>
+                </div>
+              </TabsContent>
+
+              {/* Diagnostics Tab */}
+              <TabsContent value="diagnostics" className="space-y-4 mt-4">
+                <Card>
+                  <CardHeader>
+                    <CardTitle className="flex items-center gap-2">
+                      <Gauge className="w-5 h-5" />
+                      System Diagnostics
+                    </CardTitle>
+                    <CardDescription>Real-time BMS status and fault detection</CardDescription>
+                  </CardHeader>
+                  <CardContent>
+                    <div className="space-y-3">
+                      {getBmsDiagnostics(selectedBmsVehicle.id).map((diagnostic, idx) => (
+                        <div 
+                          key={idx} 
+                          className={`p-3 border rounded-lg ${
+                            diagnostic.severity === 'warning' ? 'bg-yellow-50 dark:bg-yellow-950 border-yellow-200' : 
+                            diagnostic.severity === 'error' ? 'bg-red-50 dark:bg-red-950 border-red-200' : 
+                            'bg-green-50 dark:bg-green-950 border-green-200'
+                          }`}
+                        >
+                          <div className="flex justify-between items-start mb-2">
+                            <div className="flex items-center gap-2">
+                              <span className="text-xs font-mono">{diagnostic.code}</span>
+                              <Badge 
+                                variant={
+                                  diagnostic.severity === 'warning' ? 'default' : 
+                                  diagnostic.severity === 'error' ? 'destructive' : 
+                                  'secondary'
+                                }
+                              >
+                                {diagnostic.status}
+                              </Badge>
+                            </div>
+                            {diagnostic.severity === 'info' && <CheckCircle className="w-4 h-4 text-green-600" />}
+                            {diagnostic.severity === 'warning' && <AlertTriangle className="w-4 h-4 text-yellow-600" />}
+                          </div>
+                          <p className="text-sm">{diagnostic.description}</p>
+                        </div>
+                      ))}
+                    </div>
+
+                    <div className="mt-6 grid gap-4 md:grid-cols-3">
+                      <div className="p-3 border rounded-lg text-center">
+                        <div className="text-xs text-muted-foreground mb-1">System Status</div>
+                        <div className="text-lg font-bold text-green-600">Operational</div>
+                      </div>
+                      <div className="p-3 border rounded-lg text-center">
+                        <div className="text-xs text-muted-foreground mb-1">Active Faults</div>
+                        <div className="text-lg font-bold">
+                          {getBmsDiagnostics(selectedBmsVehicle.id).filter(d => d.severity === 'warning' || d.severity === 'error').length}
+                        </div>
+                      </div>
+                      <div className="p-3 border rounded-lg text-center">
+                        <div className="text-xs text-muted-foreground mb-1">Last Diagnostic</div>
+                        <div className="text-lg font-bold">2 hrs ago</div>
+                      </div>
+                    </div>
+
+                    <Button className="w-full mt-4" variant="outline">
+                      <Download className="w-4 h-4 mr-2" />
+                      Export Full Diagnostic Report
+                    </Button>
+                  </CardContent>
+                </Card>
+              </TabsContent>
+            </Tabs>
+          )}
+        </DialogContent>
+      </Dialog>
     </DashboardLayout>
   );
 };
