@@ -26,7 +26,7 @@ const mockMaintenanceData = {
       dueIn: "850 km's",
       timeEstimate: "2 weeks",
       priority: "High",
-      cost: 75,
+      cost: 3500,
       description: "Regular engine oil and filter replacement",
       icon: Droplets
     },
@@ -35,7 +35,7 @@ const mockMaintenanceData = {
       dueIn: "2,300 km's",
       timeEstimate: "6 weeks",
       priority: "Medium",
-      cost: 120,
+      cost: 1200,
       description: "Complete brake system inspection and fluid check",
       icon: Car
     },
@@ -44,7 +44,7 @@ const mockMaintenanceData = {
       dueIn: "4,200 km's",
       timeEstimate: "3 months",
       priority: "Low",
-      cost: 35,
+      cost: 650,
       description: "Engine air filter replacement",
       icon: Gauge
     },
@@ -53,7 +53,7 @@ const mockMaintenanceData = {
       dueIn: "6 months",
       timeEstimate: "6 months",
       priority: "Medium",
-      cost: 50,
+      cost: 350,
       description: "Battery performance and charging system test",
       icon: Zap
     }
@@ -62,27 +62,27 @@ const mockMaintenanceData = {
     {
       service: "Tire Rotation",
       completedDate: "2024-08-15",
-      cost: 65,
+      cost: 1000,
       mileage: 44850,
       nextDue: "50,850 km's"
     },
     {
       service: "Coolant Flush",
       completedDate: "2024-07-22",
-      cost: 150,
+      cost: 2000,
       mileage: 44200,
       nextDue: "74,200 km's"
     },
     {
       service: "Spark Plugs",
       completedDate: "2024-06-10",
-      cost: 280,
+      cost: 3200,
       mileage: 43800,
       nextDue: "73,800 km's"
     }
   ],
   maintenanceScore: 85,
-  totalSavings: 1250,
+  totalSavings: 15000,
   scheduledServices: 4,
   overdueServices: 0
 };

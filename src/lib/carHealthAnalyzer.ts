@@ -157,22 +157,22 @@ export const mockOBDData: OBDData = {
 export class CarHealthAnalyzer {
   // Comprehensive DTC Database
   static dtcDatabase: Record<string, DTCDescription> = {
-    'P0100': { description: 'Mass or Volume Air Flow Circuit Malfunction', partAffected: 'Air Intake', severity: 'medium', potentialCause: 'Faulty MAF sensor or wiring', repairComplexity: 'Simple', estimatedCost: 200 },
-    'P0101': { description: 'Mass or Volume Air Flow Circuit Range/Performance Problem', partAffected: 'Air Intake', severity: 'medium', potentialCause: 'Dirty or faulty MAF sensor', repairComplexity: 'Simple', estimatedCost: 150 },
-    'P0171': { description: 'System Too Lean (Bank 1)', partAffected: 'Fuel System', severity: 'medium', potentialCause: 'Vacuum leak or faulty O2 sensor', repairComplexity: 'Moderate', estimatedCost: 300 },
-    'P0172': { description: 'System Too Rich (Bank 1)', partAffected: 'Fuel System', severity: 'medium', potentialCause: 'Faulty fuel injector or MAF sensor', repairComplexity: 'Moderate', estimatedCost: 350 },
-    'P0174': { description: 'System Too Lean (Bank 2)', partAffected: 'Fuel System', severity: 'medium', potentialCause: 'Vacuum leak or intake manifold gasket', repairComplexity: 'Moderate', estimatedCost: 400 },
-    'P0175': { description: 'System Too Rich (Bank 2)', partAffected: 'Fuel System', severity: 'medium', potentialCause: 'Faulty fuel pressure regulator', repairComplexity: 'Moderate', estimatedCost: 300 },
-    'P0300': { description: 'Random/Multiple Cylinder Misfire Detected', partAffected: 'Engine', severity: 'high', potentialCause: 'Faulty spark plugs or ignition coils', repairComplexity: 'Simple', estimatedCost: 250 },
-    'P0301': { description: 'Cylinder 1 Misfire Detected', partAffected: 'Engine', severity: 'high', potentialCause: 'Faulty spark plug or ignition coil cylinder 1', repairComplexity: 'Simple', estimatedCost: 150 },
-    'P0302': { description: 'Cylinder 2 Misfire Detected', partAffected: 'Engine', severity: 'high', potentialCause: 'Faulty spark plug or ignition coil cylinder 2', repairComplexity: 'Simple', estimatedCost: 150 },
-    'P0420': { description: 'Catalyst System Efficiency Below Threshold (Bank 1)', partAffected: 'Emissions', severity: 'high', potentialCause: 'Faulty catalytic converter or O2 sensors', repairComplexity: 'Complex', estimatedCost: 1200 },
-    'P0430': { description: 'Catalyst System Efficiency Below Threshold (Bank 2)', partAffected: 'Emissions', severity: 'high', potentialCause: 'Faulty catalytic converter bank 2', repairComplexity: 'Complex', estimatedCost: 1200 },
-    'P0442': { description: 'Evaporative Emission Control System Leak Detected (Small Leak)', partAffected: 'Emissions', severity: 'low', potentialCause: 'Loose gas cap or small EVAP leak', repairComplexity: 'Simple', estimatedCost: 100 },
-    'P0446': { description: 'Evaporative Emission Control System Vent Control Circuit Malfunction', partAffected: 'Emissions', severity: 'medium', potentialCause: 'Faulty EVAP vent solenoid', repairComplexity: 'Moderate', estimatedCost: 200 },
-    'P0507': { description: 'Idle Air Control System RPM Higher Than Expected', partAffected: 'Engine', severity: 'medium', potentialCause: 'Faulty idle air control valve or vacuum leak', repairComplexity: 'Moderate', estimatedCost: 250 },
-    'P0700': { description: 'Transmission Control System Malfunction', partAffected: 'Transmission', severity: 'high', potentialCause: 'Internal transmission problem or TCM fault', repairComplexity: 'Complex', estimatedCost: 2000 },
-    'P0135': { description: 'O2 Sensor Heater Circuit Malfunction (Bank 1 Sensor 1)', partAffected: 'Emissions', severity: 'medium', potentialCause: 'Faulty oxygen sensor heater', repairComplexity: 'Simple', estimatedCost: 180 }
+    'P0100': { description: 'Mass or Volume Air Flow Circuit Malfunction', partAffected: 'Air Intake', severity: 'medium', potentialCause: 'Faulty MAF sensor or wiring', repairComplexity: 'Simple', estimatedCost: 3500 },
+    'P0101': { description: 'Mass or Volume Air Flow Circuit Range/Performance Problem', partAffected: 'Air Intake', severity: 'medium', potentialCause: 'Dirty or faulty MAF sensor', repairComplexity: 'Simple', estimatedCost: 2500 },
+    'P0171': { description: 'System Too Lean (Bank 1)', partAffected: 'Fuel System', severity: 'medium', potentialCause: 'Vacuum leak or faulty O2 sensor', repairComplexity: 'Moderate', estimatedCost: 4500 },
+    'P0172': { description: 'System Too Rich (Bank 1)', partAffected: 'Fuel System', severity: 'medium', potentialCause: 'Faulty fuel injector or MAF sensor', repairComplexity: 'Moderate', estimatedCost: 5000 },
+    'P0174': { description: 'System Too Lean (Bank 2)', partAffected: 'Fuel System', severity: 'medium', potentialCause: 'Vacuum leak or intake manifold gasket', repairComplexity: 'Moderate', estimatedCost: 6000 },
+    'P0175': { description: 'System Too Rich (Bank 2)', partAffected: 'Fuel System', severity: 'medium', potentialCause: 'Faulty fuel pressure regulator', repairComplexity: 'Moderate', estimatedCost: 4500 },
+    'P0300': { description: 'Random/Multiple Cylinder Misfire Detected', partAffected: 'Engine', severity: 'high', potentialCause: 'Faulty spark plugs or ignition coils', repairComplexity: 'Simple', estimatedCost: 4000 },
+    'P0301': { description: 'Cylinder 1 Misfire Detected', partAffected: 'Engine', severity: 'high', potentialCause: 'Faulty spark plug or ignition coil cylinder 1', repairComplexity: 'Simple', estimatedCost: 2500 },
+    'P0302': { description: 'Cylinder 2 Misfire Detected', partAffected: 'Engine', severity: 'high', potentialCause: 'Faulty spark plug or ignition coil cylinder 2', repairComplexity: 'Simple', estimatedCost: 2500 },
+    'P0420': { description: 'Catalyst System Efficiency Below Threshold (Bank 1)', partAffected: 'Emissions', severity: 'high', potentialCause: 'Faulty catalytic converter or O2 sensors', repairComplexity: 'Complex', estimatedCost: 25000 },
+    'P0430': { description: 'Catalyst System Efficiency Below Threshold (Bank 2)', partAffected: 'Emissions', severity: 'high', potentialCause: 'Faulty catalytic converter bank 2', repairComplexity: 'Complex', estimatedCost: 25000 },
+    'P0442': { description: 'Evaporative Emission Control System Leak Detected (Small Leak)', partAffected: 'Emissions', severity: 'low', potentialCause: 'Loose gas cap or small EVAP leak', repairComplexity: 'Simple', estimatedCost: 800 },
+    'P0446': { description: 'Evaporative Emission Control System Vent Control Circuit Malfunction', partAffected: 'Emissions', severity: 'medium', potentialCause: 'Faulty EVAP vent solenoid', repairComplexity: 'Moderate', estimatedCost: 3000 },
+    'P0507': { description: 'Idle Air Control System RPM Higher Than Expected', partAffected: 'Engine', severity: 'medium', potentialCause: 'Faulty idle air control valve or vacuum leak', repairComplexity: 'Moderate', estimatedCost: 3500 },
+    'P0700': { description: 'Transmission Control System Malfunction', partAffected: 'Transmission', severity: 'high', potentialCause: 'Internal transmission problem or TCM fault', repairComplexity: 'Complex', estimatedCost: 35000 },
+    'P0135': { description: 'O2 Sensor Heater Circuit Malfunction (Bank 1 Sensor 1)', partAffected: 'Emissions', severity: 'medium', potentialCause: 'Faulty oxygen sensor heater', repairComplexity: 'Simple', estimatedCost: 2800 }
   };
 
   // Component health thresholds and rules
@@ -220,7 +220,7 @@ export class CarHealthAnalyzer {
         severity: 'high',
         currentValue: sensors.engineTemp,
         normalRange: this.healthThresholds.engine.temp.normal,
-        repairCost: 800,
+        repairCost: 12000,
         urgency: 'Immediate'
       });
     } else if (sensors.engineTemp > this.healthThresholds.engine.temp.warning[1]) {
@@ -231,7 +231,7 @@ export class CarHealthAnalyzer {
         severity: 'medium',
         currentValue: sensors.engineTemp,
         normalRange: this.healthThresholds.engine.temp.normal,
-        repairCost: 300,
+        repairCost: 4500,
         urgency: 'Soon'
       });
     }
@@ -245,7 +245,7 @@ export class CarHealthAnalyzer {
         severity: 'high',
         currentValue: sensors.coolantLevel,
         normalRange: this.healthThresholds.coolant.level.normal,
-        repairCost: 150,
+        repairCost: 2500,
         urgency: 'Immediate'
       });
     }
@@ -259,7 +259,7 @@ export class CarHealthAnalyzer {
         severity: 'high',
         currentValue: sensors.batteryVoltage,
         normalRange: this.healthThresholds.battery.voltage.normal,
-        repairCost: 150,
+        repairCost: 6500,
         urgency: 'Immediate'
       });
     }
@@ -273,7 +273,7 @@ export class CarHealthAnalyzer {
         severity: 'medium',
         currentValue: sensors.absoluteLoad,
         normalRange: this.healthThresholds.engine.load.normal,
-        repairCost: 400,
+        repairCost: 6000,
         urgency: 'Schedule'
       });
     }
@@ -301,7 +301,7 @@ export class CarHealthAnalyzer {
         severity: 'high',
         currentValue: sensors.transmissionTemp,
         normalRange: this.healthThresholds.transmission.temp.normal,
-        repairCost: 1200,
+        repairCost: 18000,
         urgency: 'Immediate'
       });
     }
@@ -315,7 +315,7 @@ export class CarHealthAnalyzer {
         severity: 'high',
         currentValue: sensors.brakePressure,
         normalRange: this.healthThresholds.brake.pressure.normal,
-        repairCost: 600,
+        repairCost: 8500,
         urgency: 'Immediate'
       });
     }
@@ -367,7 +367,7 @@ export class CarHealthAnalyzer {
       kmsRemaining: oilDue,
       currentCondition: oilCondition,
       priority: oilDue === 0 ? 'High' : 'Medium',
-      estimatedCost: 75
+      estimatedCost: 3500
     });
 
     // Air Filter
@@ -380,7 +380,7 @@ export class CarHealthAnalyzer {
       kmsRemaining: airFilterDue,
       currentCondition: sensors.intakeTemp > 40 ? 'Degrading' : 'Good',
       priority: airFilterDue < 2000 ? 'High' : 'Low',
-      estimatedCost: 35
+      estimatedCost: 650
     });
 
     // Brake System
@@ -397,7 +397,7 @@ export class CarHealthAnalyzer {
       kmsRemaining: brakeDue,
       currentCondition: brakeCondition,
       priority: brakeDue < 3000 || brakeCondition === 'Needs Attention' ? 'High' : 'Medium',
-      estimatedCost: 300
+      estimatedCost: 4500
     });
 
     // Battery
@@ -411,7 +411,7 @@ export class CarHealthAnalyzer {
       kmsRemaining: 'Age-based',
       currentCondition: sensors.batteryVoltage < 12.0 ? 'Weak' : 'Good',
       priority: sensors.batteryVoltage < 12.0 || batteryTimeRemaining < 1 ? 'High' : 'Low',
-      estimatedCost: 150
+      estimatedCost: 6500
     });
 
     // Transmission Service
@@ -425,7 +425,7 @@ export class CarHealthAnalyzer {
         kmsRemaining: transDue,
         currentCondition: sensors.transmissionTemp > 100 ? 'Overheating' : 'Good',
         priority: sensors.transmissionTemp > 100 ? 'High' : 'Low',
-        estimatedCost: 200
+        estimatedCost: 3500
       });
     }
 
@@ -449,7 +449,7 @@ export class CarHealthAnalyzer {
         kmsRemaining: tireCondition === 'Replace Immediately' ? 0 : 5000,
         currentCondition: tireCondition,
         priority: tirePriority,
-        estimatedCost: 600
+        estimatedCost: 12000
       });
     }
 
