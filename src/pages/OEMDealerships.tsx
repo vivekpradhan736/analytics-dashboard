@@ -68,7 +68,7 @@ const OEMDealerships = () => {
       severity: "Critical",
       dtcCodes: ["B0013", "B0020"],
       completionRate: 68,
-      estimatedCost: 875000
+      estimatedCost: 8750000
     },
     {
       id: "RC2024-002", 
@@ -77,7 +77,7 @@ const OEMDealerships = () => {
       severity: "High",
       dtcCodes: ["P0601", "P0602"],
       completionRate: 45,
-      estimatedCost: 1200000
+      estimatedCost: 12000000
     },
     {
       id: "RC2024-003",
@@ -86,17 +86,17 @@ const OEMDealerships = () => {
       severity: "Medium",
       dtcCodes: ["P0700", "P0715"],
       completionRate: 82,
-      estimatedCost: 650000
+      estimatedCost: 6500000
     }
   ];
 
   const serviceRevenue = [
-    { month: "Jan", revenue: 145000, appointments: 1250, parts: 89000 },
-    { month: "Feb", revenue: 152000, appointments: 1180, parts: 95000 },
-    { month: "Mar", revenue: 168000, appointments: 1420, parts: 102000 },
-    { month: "Apr", revenue: 159000, appointments: 1350, parts: 98000 },
-    { month: "May", revenue: 175000, appointments: 1480, parts: 108000 },
-    { month: "Jun", revenue: 182000, appointments: 1520, parts: 115000 }
+    { month: "Jan", revenue: 1450000, appointments: 1250, parts: 890000 },
+    { month: "Feb", revenue: 1520000, appointments: 1180, parts: 950000 },
+    { month: "Mar", revenue: 1680000, appointments: 1420, parts: 1020000 },
+    { month: "Apr", revenue: 1590000, appointments: 1350, parts: 980000 },
+    { month: "May", revenue: 1750000, appointments: 1480, parts: 1080000 },
+    { month: "Jun", revenue: 1820000, appointments: 1520, parts: 1150000 }
   ];
 
   const partsDemandForecast = [
@@ -162,8 +162,8 @@ const OEMDealerships = () => {
               <Wrench className="h-4 w-4 text-green-500" />
             </CardHeader>
             <CardContent>
-              <div className="text-2xl font-bold text-green-500">₹32L</div>
-              <p className="text-xs text-muted-foreground">Monthly service income</p>
+              <div className="text-2xl font-bold text-green-500">₹9.8Cr</div>
+              <p className="text-xs text-muted-foreground">6-month service income</p>
             </CardContent>
           </Card>
 

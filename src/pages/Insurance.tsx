@@ -20,7 +20,7 @@ const Insurance = () => {
       policyHolder: "Rajesh Kumar",
       vehicle: "2020 Tata Safari",
       claimType: "Engine Damage",
-      amount: 4500,
+      amount: 45000,
       status: "Pending",
       riskScore: 85,
       obdFlags: ["P0300", "P0420"],
@@ -32,7 +32,7 @@ const Insurance = () => {
       policyHolder: "Priya Sharma",
       vehicle: "2019 Mahindra Thar",
       claimType: "Collision",
-      amount: 8200,
+      amount: 82000,
       status: "Verified",
       riskScore: 25,
       obdFlags: [],
@@ -44,7 +44,7 @@ const Insurance = () => {
       policyHolder: "Amit Singh",
       vehicle: "2021 Tata Nexon",
       claimType: "Transmission Issue",
-      amount: 3200,
+      amount: 32000,
       status: "Flagged",
       riskScore: 92,
       obdFlags: ["P0700", "P0715"],
@@ -60,12 +60,12 @@ const Insurance = () => {
   ];
 
   const fraudTrends = [
-    { month: "Jan", detected: 12, prevented: 8, saved: 85000 },
-    { month: "Feb", detected: 15, prevented: 11, saved: 92000 },
-    { month: "Mar", detected: 8, prevented: 6, saved: 67000 },
-    { month: "Apr", detected: 18, prevented: 14, saved: 125000 },
-    { month: "May", detected: 22, prevented: 18, saved: 156000 },
-    { month: "Jun", detected: 19, prevented: 15, saved: 138000 }
+    { month: "Jan", detected: 12, prevented: 8, saved: 850000 },
+    { month: "Feb", detected: 15, prevented: 11, saved: 920000 },
+    { month: "Mar", detected: 8, prevented: 6, saved: 670000 },
+    { month: "Apr", detected: 18, prevented: 14, saved: 1250000 },
+    { month: "May", detected: 22, prevented: 18, saved: 1560000 },
+    { month: "Jun", detected: 19, prevented: 15, saved: 1380000 }
   ];
 
   const premiumAdjustments = [
@@ -148,7 +148,7 @@ const Insurance = () => {
               <DollarSign className="h-4 w-4 text-blue-500" />
             </CardHeader>
             <CardContent>
-              <div className="text-2xl font-bold text-blue-500">₹12.3L</div>
+              <div className="text-2xl font-bold text-blue-500">₹63.3L</div>
               <p className="text-xs text-muted-foreground">Fraud prevention YTD</p>
             </CardContent>
           </Card>

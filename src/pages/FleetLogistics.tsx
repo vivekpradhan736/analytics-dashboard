@@ -60,10 +60,10 @@ const FleetLogistics = () => {
   ];
 
   const downtimeRiskData = [
-    { route: "Route A", risk: 85, vehicles: 12, potential_loss: 15000 },
-    { route: "Route B", risk: 45, vehicles: 8, potential_loss: 8000 },
-    { route: "Route C", risk: 72, vehicles: 15, potential_loss: 12000 },
-    { route: "Route D", risk: 30, vehicles: 10, potential_loss: 4000 }
+    { route: "Route A", risk: 85, vehicles: 12, potential_loss: 150000 },
+    { route: "Route B", risk: 45, vehicles: 8, potential_loss: 80000 },
+    { route: "Route C", risk: 72, vehicles: 15, potential_loss: 120000 },
+    { route: "Route D", risk: 30, vehicles: 10, potential_loss: 40000 }
   ];
 
   const maintenanceSchedule = [
@@ -74,12 +74,12 @@ const FleetLogistics = () => {
   ];
 
   const fuelEfficiencyData = [
-    { month: "Jan", efficiency: 25.2, cost: 3200 },
-    { month: "Feb", efficiency: 24.8, cost: 3350 },
-    { month: "Mar", efficiency: 26.1, cost: 3100 },
-    { month: "Apr", efficiency: 25.7, cost: 3180 },
-    { month: "May", efficiency: 27.3, cost: 2950 },
-    { month: "Jun", efficiency: 26.8, cost: 3020 }
+    { month: "Jan", efficiency: 25.2, cost: 32000 },
+    { month: "Feb", efficiency: 24.8, cost: 33500 },
+    { month: "Mar", efficiency: 26.1, cost: 31000 },
+    { month: "Apr", efficiency: 25.7, cost: 31800 },
+    { month: "May", efficiency: 27.3, cost: 29500 },
+    { month: "Jun", efficiency: 26.8, cost: 30200 }
   ];
 
   const getRiskColor = (risk: number) => {
@@ -89,7 +89,7 @@ const FleetLogistics = () => {
   };
 
   const calculatePotentialSavings = () => {
-    const baseCost = 45000; // Annual fleet maintenance cost
+    const baseCost = 450000; // Annual fleet maintenance cost
     const efficiencyImprovement = 0.15; // 15% improvement
     return Math.round(baseCost * efficiencyImprovement);
   };
@@ -295,7 +295,7 @@ const FleetLogistics = () => {
                 <CardContent className="space-y-4">
                   <div>
                     <label className="text-sm font-medium">Current Annual Maintenance Cost</label>
-                    <Input type="number" defaultValue="45000" className="mt-1" />
+                    <Input type="number" defaultValue="450000" className="mt-1" />
                   </div>
                   <div>
                     <label className="text-sm font-medium">Expected Efficiency Improvement</label>
@@ -321,19 +321,19 @@ const FleetLogistics = () => {
                   <div className="space-y-4">
                     <div className="flex justify-between">
                       <span>Reduced Downtime</span>
-                      <span className="font-medium">₹3,200</span>
+                      <span className="font-medium">₹32,000</span>
                     </div>
                     <div className="flex justify-between">
                       <span>Fuel Efficiency</span>
-                      <span className="font-medium">₹2,800</span>
+                      <span className="font-medium">₹28,000</span>
                     </div>
                     <div className="flex justify-between">
                       <span>Extended Vehicle Life</span>
-                      <span className="font-medium">₹1,750</span>
+                      <span className="font-medium">₹17,500</span>
                     </div>
                     <div className="flex justify-between border-t pt-2">
                       <span className="font-medium">Total Monthly Savings</span>
-                      <span className="font-bold text-green-600">₹7,750</span>
+                      <span className="font-bold text-green-600">₹77,500</span>
                     </div>
                   </div>
                 </CardContent>

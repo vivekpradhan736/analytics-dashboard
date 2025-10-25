@@ -18,7 +18,7 @@ import { LineChart, Line, XAxis, YAxis, CartesianGrid, Tooltip, ResponsiveContai
 const EVFleets = () => {
   const [selectedVehicle, setSelectedVehicle] = useState("all");
   const [chargeTime, setChargeTime] = useState({ battery: 60, chargerLevel: "level2" });
-  const [costInputs, setCostInputs] = useState({ evRate: 8, iceRate: 95 });
+  const [costInputs, setCostInputs] = useState({ evRate: 8, iceRate: 105 });
   const [bmsModalOpen, setBmsModalOpen] = useState(false);
   const [selectedBmsVehicle, setSelectedBmsVehicle] = useState<any>(null);
   
@@ -146,18 +146,18 @@ const EVFleets = () => {
   ];
 
   const chargingPatterns = [
-    { hour: "00:00", power: 2.1, cost: 0.08 },
-    { hour: "02:00", power: 8.4, cost: 0.08 },
-    { hour: "04:00", power: 12.2, cost: 0.08 },
-    { hour: "06:00", power: 15.8, cost: 0.12 },
-    { hour: "08:00", power: 18.5, cost: 0.15 },
-    { hour: "10:00", power: 22.1, cost: 0.18 },
-    { hour: "12:00", power: 25.6, cost: 0.22 },
-    { hour: "14:00", power: 28.9, cost: 0.25 },
-    { hour: "16:00", power: 32.4, cost: 0.28 },
-    { hour: "18:00", power: 28.1, cost: 0.25 },
-    { hour: "20:00", power: 18.7, cost: 0.18 },
-    { hour: "22:00", power: 8.3, cost: 0.12 }
+    { hour: "00:00", power: 2.1, cost: 5.8 },
+    { hour: "02:00", power: 8.4, cost: 6.2 },
+    { hour: "04:00", power: 12.2, cost: 6.5 },
+    { hour: "06:00", power: 15.8, cost: 7.2 },
+    { hour: "08:00", power: 18.5, cost: 8.5 },
+    { hour: "10:00", power: 22.1, cost: 9.8 },
+    { hour: "12:00", power: 25.6, cost: 11.2 },
+    { hour: "14:00", power: 28.9, cost: 12.5 },
+    { hour: "16:00", power: 32.4, cost: 13.8 },
+    { hour: "18:00", power: 28.1, cost: 12.5 },
+    { hour: "20:00", power: 18.7, cost: 9.8 },
+    { hour: "22:00", power: 8.3, cost: 7.2 }
   ];
 
   const geographicPerformance = [
@@ -212,11 +212,11 @@ const EVFleets = () => {
     { metric: "CO₂ Saved", value: "98.4T", change: "+12%", icon: Leaf },
     { metric: "Renewable %", value: "78%", change: "+8%", icon: Zap },
     { metric: "Grid Impact", value: "Low", change: "Stable", icon: Activity },
-    { metric: "Carbon Credits", value: "₹45K", change: "+15%", icon: Award }
+    { metric: "Carbon Credits", value: "₹4.5L", change: "+15%", icon: Award }
   ];
 
   const recommendations = [
-    { id: 1, priority: "high", title: "Optimize Night Charging", description: "Shift 15 vehicles to off-peak hours (10 PM - 6 AM)", savings: "₹850/month", confidence: 92 },
+    { id: 1, priority: "high", title: "Optimize Night Charging", description: "Shift 15 vehicles to off-peak hours (10 PM - 6 AM)", savings: "₹8,500/month", confidence: 92 },
     { id: 2, priority: "medium", title: "Battery Pre-conditioning", description: "Enable thermal management in cold weather", impact: "+10% efficiency", confidence: 85 },
     { id: 3, priority: "high", title: "Reduce Fast Charging", description: "Limit DC fast charging to emergency only", benefit: "+20% battery life", confidence: 88 },
     { id: 4, priority: "low", title: "Route Optimization", description: "Use highway routes for better efficiency", savings: "+15 km range", confidence: 78 }
@@ -737,7 +737,7 @@ const EVFleets = () => {
                     <div className="space-y-2">
                       <div className="flex justify-between text-sm">
                         <span>Estimated Savings</span>
-                        <span className="font-semibold text-green-600">₹12,500/month</span>
+                        <span className="font-semibold text-green-600">₹1,25,000/month</span>
                       </div>
                       <div className="flex justify-between text-sm">
                         <span>Carbon Reduction</span>
@@ -1212,7 +1212,7 @@ const EVFleets = () => {
                     <div className="p-3 bg-blue-50 border border-blue-200 rounded-lg">
                       <div className="font-medium text-blue-800">Optimal Charging Window</div>
                       <div className="text-sm text-blue-600">2:00 AM - 6:00 AM</div>
-                      <div className="text-xs text-blue-500">Potential savings: ₹850/month</div>
+                      <div className="text-xs text-blue-500">Potential savings: ₹8,500/month</div>
                     </div>
                     
                     <div className="p-3 bg-green-50 border border-green-200 rounded-lg">
@@ -1323,7 +1323,7 @@ const EVFleets = () => {
                     <div className="space-y-3">
                       <div className="flex justify-between">
                         <span>Fuel Cost Savings</span>
-                        <span className="font-medium">₹294,000 YTD</span>
+                        <span className="font-medium">₹29,40,000 YTD</span>
                       </div>
                       <div className="flex justify-between">
                         <span>Maintenance Reduction</span>
