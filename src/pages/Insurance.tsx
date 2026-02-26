@@ -18,8 +18,8 @@ const Insurance = () => {
     {
       id: "CLM001",
       policyHolder: "Rajesh Kumar",
-      vehicle: "2020 Tata Safari",
-      claimType: "Engine Damage",
+      vehicle: "Ola S1 Pro",
+      claimType: "Motor Damage",
       amount: 45000,
       status: "Pending",
       riskScore: 85,
@@ -30,7 +30,7 @@ const Insurance = () => {
     {
       id: "CLM002",
       policyHolder: "Priya Sharma",
-      vehicle: "2019 Mahindra Thar",
+      vehicle: "Ather 450X",
       claimType: "Collision",
       amount: 82000,
       status: "Verified",
@@ -42,8 +42,8 @@ const Insurance = () => {
     {
       id: "CLM003",
       policyHolder: "Amit Singh",
-      vehicle: "2021 Tata Nexon",
-      claimType: "Transmission Issue",
+      vehicle: "TVS iQube",
+      claimType: "Battery Issue",
       amount: 32000,
       status: "Flagged",
       riskScore: 92,

@@ -33,8 +33,8 @@ const DigitalTwin = () => {
         {/* Header */}
         <div className="flex items-center justify-between">
           <div>
-            <h2 className="text-2xl font-bold tracking-tight">EV Digital Twin Dashboard</h2>
-            <p className="text-sm text-muted-foreground">Real-time vehicle intelligence & predictive analytics</p>
+            <h2 className="text-3xl font-bold tracking-tight">EV Digital Twin Dashboard</h2>
+            <p className="text-muted-foreground">Real-time vehicle intelligence & predictive analytics</p>
           </div>
           <Button
             variant={isFailureMode ? "destructive" : "outline"}
@@ -54,22 +54,22 @@ const DigitalTwin = () => {
           <KpiCard icon={<Zap className="w-4 h-4" />} label="REMAINING RANGE" value={telemetry.remainingRange.toFixed(1)} unit=" km" />
           <KpiCard icon={<Timer className="w-4 h-4" />} label="SERVICE DUE" value={`${telemetry.serviceDue}`} unit=" days" />
           <KpiCard icon={<AlertTriangle className="w-4 h-4" />} label="ACTIVE ALERTS" value={`${telemetry.activeAlerts}`} unit="" isFailure={telemetry.activeAlerts > 0} />
-          <Card className="p-3">
+          <Card className="p-5">
             <div className="flex items-center gap-1.5 text-muted-foreground mb-1">
               <Shield className="w-4 h-4" />
-              <span className="text-[10px] font-semibold tracking-wider uppercase">MACHINE</span>
+              <span className="text-sm font-medium tracking-wider uppercase">MACHINE</span>
             </div>
-            <div className={`text-lg font-bold font-mono ${statusColor}`}>{telemetry.machineStatus.toUpperCase()}</div>
+            <div className={`text-lg font-bold ${statusColor}`}>{telemetry.machineStatus.toUpperCase()}</div>
           </Card>
         </div>
 
         {/* Main 3-column grid */}
-        <div className="grid grid-cols-1 lg:grid-cols-[220px_1fr_220px] gap-4">
+        <div className="grid grid-cols-1 lg:grid-cols-[280px_1fr_280px] gap-4">
           {/* LEFT - Vehicle Health */}
           <div className="space-y-3">
             <div className="flex items-center gap-2">
               <div className="w-1 h-5 bg-red-500 rounded" />
-              <h3 className="font-bold text-sm">VEHICLE HEALTH</h3>
+              <h3 className="font-bold text-md">VEHICLE HEALTH</h3>
             </div>
             <MiniChart label="BATTERY TEMPERATURE" value={`${telemetry.batteryTemp.toFixed(1)}`} unit="°C" data={batteryTempHistory} color="#ef4444" isWarning={telemetry.batteryTemp > 50} />
             <MiniChart label="MOTOR VIBRATION" value={`${telemetry.motorVibration.toFixed(1)}`} unit="mm/s" data={vibrationHistory} color="#f97316" isWarning={telemetry.motorVibration > 18} />
@@ -80,14 +80,14 @@ const DigitalTwin = () => {
           <Card className="relative overflow-hidden min-h-[400px]">
             <div className="absolute top-3 left-3 z-10 flex items-center gap-2">
               <div className={`w-2 h-2 rounded-full ${isFailureMode ? "bg-red-500 animate-pulse" : "bg-emerald-500"}`} />
-              <span className="text-xs font-mono text-emerald-600 font-semibold">3D DIGITAL TWIN — LIVE</span>
+              <span className="text-sm text-emerald-600 font-semibold">3D DIGITAL TWIN — LIVE</span>
             </div>
 
             {/* View toggle */}
             <div className="absolute top-3 right-3 z-10 flex gap-1">
               <button
                 onClick={() => setTwinView("vehicle")}
-                className={`px-2.5 py-1 text-xs font-mono rounded border transition-all ${
+                className={`px-2.5 py-1 text-xs rounded border transition-all ${
                   twinView === "vehicle" ? "border-emerald-500 text-emerald-600 bg-emerald-50" : "border-gray-300 text-gray-500 hover:border-emerald-400"
                 }`}
               >
@@ -95,7 +95,7 @@ const DigitalTwin = () => {
               </button>
               <button
                 onClick={() => setTwinView("components")}
-                className={`px-2.5 py-1 text-xs font-mono rounded border transition-all ${
+                className={`px-2.5 py-1 text-xs rounded border transition-all ${
                   twinView === "components" ? "border-emerald-500 text-emerald-600 bg-emerald-50" : "border-gray-300 text-gray-500 hover:border-emerald-400"
                 }`}
               >
@@ -116,7 +116,7 @@ const DigitalTwin = () => {
           <div className="space-y-3">
             <div className="flex items-center gap-2">
               <div className="w-1 h-5 bg-red-500 rounded" />
-              <h3 className="font-bold text-sm">PERFORMANCE</h3>
+              <h3 className="font-bold text-md">PERFORMANCE</h3>
             </div>
             <PerfCard icon={<Gauge className="w-4 h-4 text-emerald-500" />} label="SPEED" value={telemetry.speed.toFixed(1)} unit="km/h" color="emerald" />
             <PerfCard icon={<Activity className="w-4 h-4 text-cyan-500" />} label="TORQUE" value={telemetry.torque.toFixed(1)} unit="Nm" color="cyan" />
@@ -146,7 +146,7 @@ const DigitalTwin = () => {
                 <CardContent>
                   <table className="w-full text-sm">
                     <thead><tr className="text-muted-foreground text-xs"><th className="text-left pb-2">Parameter</th><th className="text-right pb-2">Value</th><th className="text-right pb-2">Status</th></tr></thead>
-                    <tbody className="font-mono">
+                    <tbody className="">
                       <TelemetryRow label="Battery Temp" value={`${telemetry.batteryTemp.toFixed(1)}°C`} ok={telemetry.batteryTemp < 50} />
                       <TelemetryRow label="Motor Temp" value={`${telemetry.motorTemp.toFixed(1)}°C`} ok={telemetry.motorTemp < 70} />
                       <TelemetryRow label="Motor RPM" value={`${telemetry.motorRPM}`} ok={telemetry.motorRPM < 5000} />
@@ -170,7 +170,7 @@ const DigitalTwin = () => {
                           <div className="font-semibold">{a.source}</div>
                           <div className="text-muted-foreground">{a.message}</div>
                         </div>
-                        <span className="text-muted-foreground font-mono">{a.time}</span>
+                        <span className="text-muted-foreground">{a.time}</span>
                       </div>
                     ))}
                   </div>
@@ -183,12 +183,12 @@ const DigitalTwin = () => {
             <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
               <Card className="p-4">
                 <div className="text-xs text-muted-foreground mb-1">Failure Probability</div>
-                <div className={`text-2xl font-bold font-mono ${predictive.failureProbability > 50 ? "text-red-500" : "text-emerald-600"}`}>{predictive.failureProbability.toFixed(1)}%</div>
+                <div className={`text-2xl font-bold ${predictive.failureProbability > 50 ? "text-red-500" : "text-emerald-600"}`}>{predictive.failureProbability.toFixed(1)}%</div>
                 <Progress value={predictive.failureProbability} className="mt-2 h-1.5" />
               </Card>
               <Card className="p-4">
                 <div className="text-xs text-muted-foreground mb-1">Remaining Useful Life</div>
-                <div className={`text-2xl font-bold font-mono ${predictive.remainingLife < 100 ? "text-red-500" : "text-foreground"}`}>{predictive.remainingLife} days</div>
+                <div className={`text-2xl font-bold ${predictive.remainingLife < 100 ? "text-red-500" : "text-foreground"}`}>{predictive.remainingLife} days</div>
               </Card>
               <Card className="p-4">
                 <div className="text-xs text-muted-foreground mb-1">Recommended Action</div>
@@ -196,7 +196,7 @@ const DigitalTwin = () => {
               </Card>
               <Card className="p-4">
                 <div className="text-xs text-muted-foreground mb-1">Cost Avoided</div>
-                <div className="text-2xl font-bold font-mono text-emerald-600">₹{predictive.costAvoided.toLocaleString()}</div>
+                <div className="text-2xl font-bold text-emerald-600">₹{predictive.costAvoided.toLocaleString()}</div>
               </Card>
             </div>
           </TabsContent>
@@ -205,17 +205,17 @@ const DigitalTwin = () => {
             <div className="grid grid-cols-3 gap-4">
               <Card className="p-4">
                 <div className="text-xs text-muted-foreground mb-1">Riding Style Score</div>
-                <div className="text-2xl font-bold font-mono">{rideIntel.ridingStyleScore}/100</div>
+                <div className="text-2xl font-bold">{rideIntel.ridingStyleScore}/100</div>
                 <Progress value={rideIntel.ridingStyleScore} className="mt-2 h-1.5" />
               </Card>
               <Card className="p-4">
                 <div className="text-xs text-muted-foreground mb-1">Battery Stress Index</div>
-                <div className={`text-2xl font-bold font-mono ${rideIntel.batteryStressIndex > 50 ? "text-red-500" : "text-foreground"}`}>{rideIntel.batteryStressIndex}%</div>
+                <div className={`text-2xl font-bold ${rideIntel.batteryStressIndex > 50 ? "text-red-500" : "text-foreground"}`}>{rideIntel.batteryStressIndex}%</div>
                 <Progress value={rideIntel.batteryStressIndex} className="mt-2 h-1.5" />
               </Card>
               <Card className="p-4">
                 <div className="text-xs text-muted-foreground mb-1">Efficiency Loss</div>
-                <div className={`text-2xl font-bold font-mono ${rideIntel.efficiencyLoss > 15 ? "text-red-500" : "text-foreground"}`}>{rideIntel.efficiencyLoss}%</div>
+                <div className={`text-2xl font-bold ${rideIntel.efficiencyLoss > 15 ? "text-red-500" : "text-foreground"}`}>{rideIntel.efficiencyLoss}%</div>
               </Card>
             </div>
           </TabsContent>
@@ -229,13 +229,13 @@ const DigitalTwin = () => {
 
 function KpiCard({ icon, label, value, unit, isFailure }: { icon: React.ReactNode; label: string; value: string; unit: string; isFailure?: boolean }) {
   return (
-    <Card className={`p-3 transition-all ${isFailure ? "border-red-400 bg-red-50" : ""}`}>
+    <Card className={`p-5 transition-all ${isFailure ? "border-red-400 bg-red-50" : ""}`}>
       <div className="flex items-center gap-1.5 text-muted-foreground mb-1">
         {icon}
-        <span className="text-[10px] font-semibold tracking-wider uppercase">{label}</span>
+        <span className="text-sm font-medium tracking-wider">{label}</span>
       </div>
       <div className="flex items-baseline gap-0.5">
-        <span className={`text-xl font-bold font-mono ${isFailure ? "text-red-500" : "text-foreground"}`}>{value}</span>
+        <span className={`text-xl font-bold ${isFailure ? "text-red-500" : "text-foreground"}`}>{value}</span>
         <span className="text-xs text-muted-foreground">{unit}</span>
       </div>
     </Card>
@@ -246,13 +246,13 @@ function MiniChart({ label, value, unit, data, color, isWarning }: { label: stri
   return (
     <Card className={`p-3 ${isWarning ? "border-red-300" : ""}`}>
       <div className="flex justify-between items-start mb-1">
-        <span className="text-[10px] font-semibold tracking-wider uppercase text-muted-foreground">{label}</span>
+        <span className="text-[13px] font-semibold tracking-wider uppercase text-muted-foreground">{label}</span>
         <div className="flex items-baseline gap-0.5">
-          <span className={`text-lg font-bold font-mono ${isWarning ? "text-red-500" : ""}`}>{value}</span>
-          <span className="text-[10px] text-muted-foreground">{unit}</span>
+          <span className={`text-lg font-bold ${isWarning ? "text-red-500" : ""}`}>{value}</span>
+          <span className="text-[12px] text-muted-foreground">{unit}</span>
         </div>
       </div>
-      <ResponsiveContainer width="100%" height={40}>
+      <ResponsiveContainer width="100%" height={70}>
         <AreaChart data={data}>
           <Area type="monotone" dataKey="value" stroke={color} fill={color} fillOpacity={0.15} strokeWidth={1.5} dot={false} />
         </AreaChart>
@@ -265,13 +265,13 @@ function PerfCard({ icon, label, value, unit, color }: { icon: React.ReactNode; 
   const colorMap: Record<string, string> = { emerald: "bg-emerald-500", cyan: "bg-cyan-500", blue: "bg-blue-500", purple: "bg-purple-500" };
   return (
     <Card className="p-3">
-      <div className="flex items-center gap-1.5 mb-1">
+      <div className="flex items-center gap-1.5 mb-4">
         {icon}
-        <span className="text-[10px] font-semibold tracking-wider uppercase text-muted-foreground">{label}</span>
+        <span className="text-[13px] font-semibold tracking-wider uppercase text-muted-foreground">{label}</span>
       </div>
       <div className="flex items-baseline gap-0.5 mb-1.5">
-        <span className="text-lg font-bold font-mono">{value}</span>
-        <span className="text-[10px] text-muted-foreground">{unit}</span>
+        <span className="text-lg font-bold">{value}</span>
+        <span className="text-[12px] text-muted-foreground">{unit}</span>
       </div>
       <div className="w-full h-1 bg-muted rounded-full overflow-hidden">
         <div className={`h-full ${colorMap[color] || "bg-emerald-500"} rounded-full`} style={{ width: `${Math.min(parseFloat(value) / 1.2, 100)}%` }} />

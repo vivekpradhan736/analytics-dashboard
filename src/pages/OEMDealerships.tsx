@@ -17,7 +17,7 @@ const OEMDealerships = () => {
     {
       vin: "1HGBH41JXMN109186",
       owner: "Rajesh Kumar",
-      model: "2020 Mahindra Thar",
+      model: "Tata Nexon EV",
       mileage: 52000,
       lastService: "2024-08-15",
       nextService: "2024-11-15",
@@ -29,7 +29,7 @@ const OEMDealerships = () => {
     {
       vin: "2T1BURHE1JC123456", 
       owner: "Priya Sharma",
-      model: "2019 Tata Nexon",
+      model: "MG ZS EV",
       mileage: 48000,
       lastService: "2024-09-01",
       nextService: "2024-12-01",
@@ -41,7 +41,7 @@ const OEMDealerships = () => {
     {
       vin: "3FA6P0H75JR654321",
       owner: "Amit Singh", 
-      model: "2021 Tata Safari",
+      model: "Mahindra XUV400 EV",
       mileage: 65000,
       lastService: "2024-07-20",
       nextService: "2024-10-20",
@@ -63,7 +63,7 @@ const OEMDealerships = () => {
   const recallData = [
     {
       id: "RC2024-001",
-      component: "Airbag Control Module",
+      component: "Battery Control Module",
       affectedVehicles: 1250,
       severity: "Critical",
       dtcCodes: ["B0013", "B0020"],
@@ -72,7 +72,7 @@ const OEMDealerships = () => {
     },
     {
       id: "RC2024-002", 
-      component: "Engine Control Unit",
+      component: "Motor Control Unit",
       affectedVehicles: 890,
       severity: "High",
       dtcCodes: ["P0601", "P0602"],
@@ -101,8 +101,8 @@ const OEMDealerships = () => {
 
   const partsDemandForecast = [
     { part: "Brake Components", current: 450, forecast: 520, trend: "+15%" },
-    { part: "Engine Parts", current: 280, forecast: 310, trend: "+11%" },
-    { part: "Transmission", current: 120, forecast: 95, trend: "-21%" },
+    { part: "Motor Parts", current: 280, forecast: 310, trend: "+11%" },
+    { part: "Battery", current: 120, forecast: 95, trend: "-21%" },
     { part: "Electrical", current: 340, forecast: 385, trend: "+13%" }
   ];
 

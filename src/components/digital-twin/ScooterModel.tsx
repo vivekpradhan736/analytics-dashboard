@@ -7,14 +7,14 @@ function VehicleModel() {
   const { scene } = useGLTF("/models/ola_electric_scooter.glb");
   const ref = useRef<THREE.Group>(null);
 
-  useFrame((_, delta) => {
-    if (ref.current) {
-      ref.current.rotation.y += delta * 0.15;
-    }
-  });
+  // useFrame((_, delta) => {
+  //   if (ref.current) {
+  //     ref.current.rotation.y += delta * 0.15;
+  //   }
+  // });
 
   return (
-    <group ref={ref} scale={2.4} position={[0, -1, 0]}>
+    <group ref={ref} scale={2.4} position={[0, -1, 0]} rotation={[0, Math.PI / 1.5, 0]}>
       <primitive object={scene} />
     </group>
   );

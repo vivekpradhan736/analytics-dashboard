@@ -27,7 +27,7 @@ function BatteryPack({ selected, onClick, isFailure }: { selected: boolean; onCl
         </mesh>
       ))}
       <Html position={[0, 0.8, 0]} center>
-        <span className="text-xs font-mono text-emerald-400 bg-black/70 px-2 py-0.5 rounded whitespace-nowrap">BATTERY PACK</span>
+        <span className="text-xs text-emerald-400 bg-black/70 px-2 py-0.5 rounded whitespace-nowrap">BATTERY PACK</span>
       </Html>
     </group>
   );
@@ -46,7 +46,7 @@ function HubMotor({ selected, onClick, isFailure }: { selected: boolean; onClick
         <meshStandardMaterial color="#1a1a1a" />
       </mesh>
       <Html position={[0, 0.9, 0]} center>
-        <span className="text-xs font-mono text-emerald-400 bg-black/70 px-2 py-0.5 rounded whitespace-nowrap">HUB MOTOR</span>
+        <span className="text-xs text-emerald-400 bg-black/70 px-2 py-0.5 rounded whitespace-nowrap">HUB MOTOR</span>
       </Html>
     </group>
   );
@@ -61,7 +61,7 @@ function Controller({ selected, onClick, isFailure }: { selected: boolean; onCli
         <meshStandardMaterial color={color} transparent opacity={selected ? 1 : 0.85} />
       </mesh>
       <Html position={[0, 0.6, 0]} center>
-        <span className="text-xs font-mono text-emerald-400 bg-black/70 px-2 py-0.5 rounded whitespace-nowrap">CONTROLLER</span>
+        <span className="text-xs text-emerald-400 bg-black/70 px-2 py-0.5 rounded whitespace-nowrap">CONTROLLER</span>
       </Html>
     </group>
   );
@@ -117,7 +117,7 @@ export function ComponentView({ telemetry, isFailureMode, className }: Component
           <button
             key={c}
             onClick={() => setSelectedComponent(c)}
-            className={`px-3 py-1 text-xs font-mono uppercase rounded border transition-all ${
+            className={`px-3 py-1 text-xs uppercase rounded border transition-all ${
               selectedComponent === c
                 ? "border-emerald-500 text-emerald-400 bg-emerald-500/10"
                 : "border-gray-600 text-gray-400 hover:border-emerald-500/50"
@@ -131,8 +131,8 @@ export function ComponentView({ telemetry, isFailureMode, className }: Component
       {/* Floating info card */}
       {selectedComponent && (
         <div className="absolute top-12 right-4 bg-black/80 border border-emerald-500/30 rounded-lg p-3 min-w-[160px]">
-          <h4 className="text-emerald-400 font-mono text-xs uppercase mb-2">{selectedComponent}</h4>
-          <div className="space-y-1 text-xs font-mono">
+          <h4 className="text-emerald-400 text-xs uppercase mb-2">{selectedComponent}</h4>
+          <div className="space-y-1 text-xs">
             {componentInfo[selectedComponent].rpm !== undefined && (
               <div className="flex justify-between"><span className="text-gray-400">RPM</span><span className="text-white">{componentInfo[selectedComponent].rpm}</span></div>
             )}

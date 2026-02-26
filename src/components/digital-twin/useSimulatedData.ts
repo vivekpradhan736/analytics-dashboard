@@ -130,7 +130,7 @@ export function useSimulatedData() {
           remainingRange: jitter(prev.remainingRange, 1),
           serviceDue: prev.serviceDue,
           activeAlerts: Math.random() > 0.95 ? 1 : 0,
-          machineStatus: "Normal",
+          machineStatus: jitter(prev.batteryTemp, 0.5) > 50 ? "Critical" : "Normal",
           batteryTemp: jitter(prev.batteryTemp, 0.5),
           motorTemp: jitter(prev.motorTemp, 0.8),
           motorRPM: Math.round(jitter(prev.motorRPM, 50, 0)),

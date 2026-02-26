@@ -38,7 +38,7 @@ const menuItems = [
 
 const b2bItems = [
   { title: "Digital Twin", url: "/digital-twin", icon: Box },
-  { title: "Fleet & Logistics", url: "/fleet-logistics", icon: Truck },
+  // { title: "Fleet & Logistics", url: "/fleet-logistics", icon: Truck },
   { title: "Insurance", url: "/insurance", icon: Shield },
   { title: "OEM & Dealerships", url: "/oem-dealerships", icon: Building2 },
   { title: "EV Fleets", url: "/ev-fleets", icon: Battery },

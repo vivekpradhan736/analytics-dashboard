@@ -26,7 +26,7 @@ const EVFleets = () => {
     {
       id: "EV001",
       make: "Mahindra",
-      model: "BE 6",
+      model: "XUV400 EV",
       year: 2022,
       batteryHealth: 92,
       currentSoC: 78,
@@ -74,7 +74,7 @@ const EVFleets = () => {
     {
       id: "EV003",
       make: "Hyundai",
-      model: "Ioniq 5",
+      model: "Kona Electric",
       year: 2023,
       batteryHealth: 96,
       currentSoC: 89,
