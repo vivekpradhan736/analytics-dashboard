@@ -52,4 +52,5 @@ export function ScooterModelViewer({ className }: ScooterModelProps) {
   );
 }
 
+// Preload the model
 useGLTF.preload("/models/ola_electric_scooter.glb");
