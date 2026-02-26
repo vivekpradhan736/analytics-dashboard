@@ -130,7 +130,7 @@ export function ComponentView({ telemetry, isFailureMode, className }: Component
 
       {/* Floating info card */}
       {selectedComponent && (
-        <div className="absolute top-4 right-4 bg-black/80 border border-emerald-500/30 rounded-lg p-3 min-w-[160px]">
+        <div className="absolute top-12 right-4 bg-black/80 border border-emerald-500/30 rounded-lg p-3 min-w-[160px]">
           <h4 className="text-emerald-400 font-mono text-xs uppercase mb-2">{selectedComponent}</h4>
           <div className="space-y-1 text-xs font-mono">
             {componentInfo[selectedComponent].rpm !== undefined && (

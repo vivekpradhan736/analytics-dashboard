@@ -178,8 +178,8 @@ export default function Dashboard() {
           
           <MetricCard
             title="Estimated Value"
-            // value={`₹${analysis.resaleValue.marketValue.toLocaleString()}`}
-            value={`₹4,80,000`}
+            value={`₹${analysis.resaleValue.marketValue.toLocaleString()}`}
+            // value={`₹4,80,000`}
             change={-3.2}
             changeLabel="depreciation"
             icon={<IndianRupee className="w-5 h-5" />}
