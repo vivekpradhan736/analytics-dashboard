@@ -12,7 +12,8 @@ import {
   Truck,
   Shield,
   Building2,
-  Battery
+  Battery,
+  Box
 } from "lucide-react";
 import {
   Sidebar,
@@ -36,6 +37,7 @@ const menuItems = [
 ];
 
 const b2bItems = [
+  { title: "Digital Twin", url: "/digital-twin", icon: Box },
   { title: "Fleet & Logistics", url: "/fleet-logistics", icon: Truck },
   { title: "Insurance", url: "/insurance", icon: Shield },
   { title: "OEM & Dealerships", url: "/oem-dealerships", icon: Building2 },

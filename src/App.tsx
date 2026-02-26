@@ -12,6 +12,7 @@ import NotFound from "./pages/NotFound";
 import HealthAnalysis from "./pages/HealthAnalysis";
 import ServiceBookings from "./pages/ServiceBookings";
 import FleetLogistics from "./pages/FleetLogistics";
+import DigitalTwin from "./pages/DigitalTwin";
 import Insurance from "./pages/Insurance";
 import OEMDealerships from "./pages/OEMDealerships";
 import EVFleets from "./pages/EVFleets";
@@ -31,6 +32,7 @@ const App = () => (
           <Route path="/service-bookings" element={<ServiceBookings />} />
           <Route path="/resale" element={<ResaleValue />} />
           <Route path="/analytics" element={<Analytics />} />
+          <Route path="/digital-twin" element={<DigitalTwin />} />
           <Route path="/fleet-logistics" element={<FleetLogistics />} />
           <Route path="/insurance" element={<Insurance />} />
           <Route path="/oem-dealerships" element={<OEMDealerships />} />
