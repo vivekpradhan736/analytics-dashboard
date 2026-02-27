@@ -55,7 +55,7 @@ function GLBComponent({ url, position, scale, rotation, selected, onClick, label
   return (
     <group ref={ref} position={position} scale={scale} rotation={rotation || [0, 0, 0]} onClick={(e) => { e.stopPropagation(); onClick(); }}>
       <primitive object={clonedScene} />
-      <Html position={[0, 1.2, 0]} center>
+      <Html position={[0, 0.6, 0]} center>
         <span className="text-xs text-emerald-400 bg-black/70 px-2 py-0.5 rounded whitespace-nowrap">{label}</span>
       </Html>
     </group>
@@ -130,7 +130,7 @@ export function ComponentView({ telemetry, isFailureMode, className }: Component
           />
           <GLBComponent
             url="/models/controller.glb"
-            position={[0, -1.5, 0]}
+            position={[0, -1.2, 0]}
             scale={1.5}
             selected={selectedComponent === "controller"}
             onClick={() => setSelectedComponent("controller")}

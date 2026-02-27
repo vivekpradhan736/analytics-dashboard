@@ -41,7 +41,7 @@ export function DashboardLayout({ children }: DashboardLayoutProps) {
               <div className="flex items-center md:gap-3 gap-[0.2rem]">
                 <div className="text-right">
                   <p className="text-sm font-medium text-foreground">Vivek Pradhan</p>
-                  <p className="text-xs text-muted-foreground">Ather 450X</p>
+                  <p className="text-xs text-muted-foreground">Ola S1 Pro</p>
                 </div>
                 <CircleUserRound className="w-8 h-8 text-white bg-gradient-primary rounded-full" />
                 {/* <div className="w-8 h-8 bg-gradient-primary rounded-full"></div> */}
