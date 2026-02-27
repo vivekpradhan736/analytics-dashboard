@@ -28,7 +28,7 @@ import {
 } from "@/components/ui/sidebar";
 
 const menuItems = [
-  { title: "Dashboard", url: "/", icon: LayoutDashboard },
+  { title: "Dashboard", url: "/dashboard", icon: LayoutDashboard },
   { title: "Health Analysis", url: "/health", icon: AlertTriangle },
   { title: "Maintenance", url: "/maintenance", icon: Wrench },
   // { title: "Service Bookings", url: "/service-bookings", icon: Calendar },
@@ -37,7 +37,7 @@ const menuItems = [
 ];
 
 const b2bItems = [
-  { title: "Digital Twin", url: "/digital-twin", icon: Box },
+  { title: "Digital Twin", url: "/", icon: Box },
   // { title: "Fleet & Logistics", url: "/fleet-logistics", icon: Truck },
   // { title: "Insurance", url: "/insurance", icon: Shield },
   { title: "OEM & Dealerships", url: "/oem-dealerships", icon: Building2 },
