@@ -1,6 +1,7 @@
-import { useState } from "react";
-import { Canvas } from "@react-three/fiber";
-import { OrbitControls, Html } from "@react-three/drei";
+import { useState, Suspense, useRef, useEffect } from "react";
+import { Canvas, useFrame } from "@react-three/fiber";
+import { OrbitControls, Html, useGLTF } from "@react-three/drei";
+import * as THREE from "three";
 import type { TelemetryData } from "./useSimulatedData";
 
 interface ComponentViewProps {
@@ -11,77 +12,82 @@ interface ComponentViewProps {
 
 type ComponentName = "battery" | "motor" | "controller";
 
-function BatteryPack({ selected, onClick, isFailure }: { selected: boolean; onClick: () => void; isFailure: boolean }) {
-  const color = isFailure ? "#ef4444" : selected ? "#22c55e" : "#16a34a";
+function GLBComponent({ url, position, scale, rotation, selected, onClick, label, isFailure }: {
+  url: string;
+  position: [number, number, number];
+  scale: number;
+  rotation?: [number, number, number];
+  selected: boolean;
+  onClick: () => void;
+  label: string;
+  isFailure: boolean;
+}) {
+  const { scene } = useGLTF(url);
+  const ref = useRef<THREE.Group>(null);
+  const clonedScene = scene.clone(true);
+
+  // Apply highlight color overlay when selected or failure
+  useEffect(() => {
+    clonedScene.traverse((child) => {
+      if (child instanceof THREE.Mesh && child.material) {
+        const mat = child.material as THREE.MeshStandardMaterial;
+        if (selected) {
+          mat.emissive = new THREE.Color(isFailure ? "#ff2222" : "#22c55e");
+          mat.emissiveIntensity = 0.4;
+        } else if (isFailure) {
+          mat.emissive = new THREE.Color("#eab308");
+          mat.emissiveIntensity = 0.2;
+        } else {
+          mat.emissive = new THREE.Color("#000000");
+          mat.emissiveIntensity = 0;
+        }
+      }
+    });
+  }, [selected, isFailure, clonedScene]);
+
+  // Gentle float animation when selected
+  useFrame((_, delta) => {
+    if (ref.current && selected) {
+      ref.current.position.y = position[1] + Math.sin(Date.now() * 0.003) * 0.05;
+    }
+  });
+
   return (
-    <group position={[-1.2, 0, 0]} onClick={onClick}>
-      <mesh>
-        <boxGeometry args={[1.8, 0.8, 1]} />
-        <meshStandardMaterial color={color} transparent opacity={selected ? 1 : 0.85} />
-      </mesh>
-      {/* Battery cells */}
-      {[-0.6, -0.2, 0.2, 0.6].map((x, i) => (
-        <mesh key={i} position={[x, 0, 0.51]}>
-          <boxGeometry args={[0.3, 0.6, 0.02]} />
-          <meshStandardMaterial color="#0a0a0a" />
-        </mesh>
-      ))}
-      <Html position={[0, 0.8, 0]} center>
-        <span className="text-xs text-emerald-400 bg-black/70 px-2 py-0.5 rounded whitespace-nowrap">BATTERY PACK</span>
+    <group ref={ref} position={position} scale={scale} rotation={rotation || [0, 0, 0]} onClick={(e) => { e.stopPropagation(); onClick(); }}>
+      <primitive object={clonedScene} />
+      <Html position={[0, 1.2, 0]} center>
+        <span className="text-xs text-emerald-400 bg-black/70 px-2 py-0.5 rounded whitespace-nowrap">{label}</span>
       </Html>
     </group>
   );
 }
 
-function HubMotor({ selected, onClick, isFailure }: { selected: boolean; onClick: () => void; isFailure: boolean }) {
-  const color = isFailure ? "#eab308" : selected ? "#22c55e" : "#16a34a";
+function LoadingFallback() {
   return (
-    <group position={[1.5, 0, 0]} onClick={onClick}>
-      <mesh rotation={[0, 0, Math.PI / 2]}>
-        <cylinderGeometry args={[0.5, 0.5, 0.8, 32]} />
-        <meshStandardMaterial color={color} transparent opacity={selected ? 1 : 0.85} />
-      </mesh>
-      <mesh position={[0.5, 0, 0]} rotation={[0, 0, Math.PI / 2]}>
-        <cylinderGeometry args={[0.08, 0.08, 0.5, 16]} />
-        <meshStandardMaterial color="#1a1a1a" />
-      </mesh>
-      <Html position={[0, 0.9, 0]} center>
-        <span className="text-xs text-emerald-400 bg-black/70 px-2 py-0.5 rounded whitespace-nowrap">HUB MOTOR</span>
-      </Html>
-    </group>
+    <Html center>
+      <div className="flex flex-col items-center gap-2">
+        <div className="w-8 h-8 border-2 border-emerald-500 border-t-transparent rounded-full animate-spin" />
+        <span className="text-xs text-emerald-500 font-mono">Loading Models...</span>
+      </div>
+    </Html>
   );
 }
 
-function Controller({ selected, onClick, isFailure }: { selected: boolean; onClick: () => void; isFailure: boolean }) {
-  const color = isFailure ? "#eab308" : selected ? "#22c55e" : "#16a34a";
-  return (
-    <group position={[0.2, -1, 0]} onClick={onClick}>
-      <mesh>
-        <boxGeometry args={[0.8, 0.5, 0.6]} />
-        <meshStandardMaterial color={color} transparent opacity={selected ? 1 : 0.85} />
-      </mesh>
-      <Html position={[0, 0.6, 0]} center>
-        <span className="text-xs text-emerald-400 bg-black/70 px-2 py-0.5 rounded whitespace-nowrap">CONTROLLER</span>
-      </Html>
-    </group>
-  );
-}
-
-// Wire connections
+// Wire connections between components
 function Wires() {
   return (
     <>
       <mesh position={[0, -0.3, 0]}>
-        <boxGeometry args={[1.5, 0.03, 0.03]} />
-        <meshStandardMaterial color="#666" />
+        <boxGeometry args={[2.5, 0.02, 0.02]} />
+        <meshStandardMaterial color="#555" />
       </mesh>
-      <mesh position={[-0.5, -0.5, 0]} rotation={[0, 0, Math.PI / 4]}>
-        <boxGeometry args={[0.8, 0.03, 0.03]} />
-        <meshStandardMaterial color="#666" />
+      <mesh position={[-0.8, -0.6, 0]} rotation={[0, 0, Math.PI / 5]}>
+        <boxGeometry args={[1, 0.02, 0.02]} />
+        <meshStandardMaterial color="#555" />
       </mesh>
-      <mesh position={[0.85, -0.5, 0]} rotation={[0, 0, -Math.PI / 4]}>
-        <boxGeometry args={[0.8, 0.03, 0.03]} />
-        <meshStandardMaterial color="#666" />
+      <mesh position={[0.8, -0.6, 0]} rotation={[0, 0, -Math.PI / 5]}>
+        <boxGeometry args={[1, 0.02, 0.02]} />
+        <meshStandardMaterial color="#555" />
       </mesh>
     </>
   );
@@ -98,14 +104,40 @@ export function ComponentView({ telemetry, isFailureMode, className }: Component
 
   return (
     <div className={className}>
-      <Canvas camera={{ position: [0, 1, 6], fov: 40 }}>
-        <ambientLight intensity={0.5} />
-        <directionalLight position={[5, 5, 5]} intensity={0.8} />
-        <pointLight position={[-3, 2, -3]} intensity={0.3} />
+      <Canvas camera={{ position: [0, 1, 8], fov: 40 }}>
+        <ambientLight intensity={0.6} />
+        <directionalLight position={[5, 5, 5]} intensity={1} />
+        <pointLight position={[-3, 2, -3]} intensity={0.4} />
         
-        <BatteryPack selected={selectedComponent === "battery"} onClick={() => setSelectedComponent("battery")} isFailure={isFailureMode} />
-        <HubMotor selected={selectedComponent === "motor"} onClick={() => setSelectedComponent("motor")} isFailure={isFailureMode} />
-        <Controller selected={selectedComponent === "controller"} onClick={() => setSelectedComponent("controller")} isFailure={isFailureMode} />
+        <Suspense fallback={<LoadingFallback />}>
+          <GLBComponent
+            url="/models/battery.glb"
+            position={[-2, 0, 0]}
+            scale={1.5}
+            selected={selectedComponent === "battery"}
+            onClick={() => setSelectedComponent("battery")}
+            label="BATTERY PACK"
+            isFailure={isFailureMode}
+          />
+          <GLBComponent
+            url="/models/mono_motor.glb"
+            position={[2, 0, 0]}
+            scale={1.5}
+            selected={selectedComponent === "motor"}
+            onClick={() => setSelectedComponent("motor")}
+            label="HUB MOTOR"
+            isFailure={isFailureMode}
+          />
+          <GLBComponent
+            url="/models/controller.glb"
+            position={[0, -1.5, 0]}
+            scale={1.5}
+            selected={selectedComponent === "controller"}
+            onClick={() => setSelectedComponent("controller")}
+            label="CONTROLLER"
+            isFailure={isFailureMode}
+          />
+        </Suspense>
         <Wires />
         
         <OrbitControls enablePan={false} enableZoom={true} minDistance={3} maxDistance={12} />
@@ -147,3 +179,8 @@ export function ComponentView({ telemetry, isFailureMode, className }: Component
     </div>
   );
 }
+
+// Preload models
+useGLTF.preload("/models/battery.glb");
+useGLTF.preload("/models/mono_motor.glb");
+useGLTF.preload("/models/controller.glb");
