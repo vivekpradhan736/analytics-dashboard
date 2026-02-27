@@ -47,6 +47,30 @@ const randomInRange = (min: number, max: number, decimals = 1) =>
 const jitter = (base: number, range: number, decimals = 1) =>
   parseFloat((base + (Math.random() - 0.5) * 2 * range).toFixed(decimals));
 
+function calculateMachineStatus(t: TelemetryData): "Normal" | "Warning" | "Critical" {
+  // Score each parameter 0-1 (1 = worst)
+  const battTempScore = Math.min(Math.max((t.batteryTemp - 35) / 30, 0), 1);   // 35°C normal, 65°C critical
+  const motorTempScore = Math.min(Math.max((t.motorTemp - 50) / 40, 0), 1);     // 50°C normal, 90°C critical
+  const vibrationScore = Math.min(Math.max((t.motorVibration - 8) / 18, 0), 1); // 8 normal, 26 critical
+  const energyScore = Math.min(Math.max((t.energyConsumption - 2) / 3, 0), 1);  // 2 normal, 5 critical
+  const rpmScore = Math.min(Math.max((t.motorRPM - 3000) / 3000, 0), 1);       // 3000 normal, 6000 critical
+  const voltageScore = Math.min(Math.max((44 - t.batteryVoltage) / 10, 0), 1);  // <44V is bad
+  const ctrlTempScore = Math.min(Math.max((t.controllerTemp - 40) / 30, 0), 1); // 40 normal, 70 critical
+
+  const weighted = 
+    battTempScore * 0.2 +
+    motorTempScore * 0.15 +
+    vibrationScore * 0.2 +
+    energyScore * 0.1 +
+    rpmScore * 0.1 +
+    voltageScore * 0.1 +
+    ctrlTempScore * 0.15;
+
+  if (weighted > 0.55) return "Critical";
+  if (weighted > 0.3) return "Warning";
+  return "Normal";
+}
+
 export function useSimulatedData() {
   const [isFailureMode, setIsFailureMode] = useState(false);
   const [telemetry, setTelemetry] = useState<TelemetryData>({
@@ -130,7 +154,7 @@ export function useSimulatedData() {
           remainingRange: jitter(prev.remainingRange, 1),
           serviceDue: prev.serviceDue,
           activeAlerts: Math.random() > 0.95 ? 1 : 0,
-          machineStatus: jitter(prev.batteryTemp, 0.5) > 50 ? "Critical" : "Normal",
+          machineStatus: calculateMachineStatus(prev),
           batteryTemp: jitter(prev.batteryTemp, 0.5),
           motorTemp: jitter(prev.motorTemp, 0.8),
           motorRPM: Math.round(jitter(prev.motorRPM, 50, 0)),
