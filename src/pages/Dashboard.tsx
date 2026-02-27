@@ -143,7 +143,7 @@ export default function Dashboard() {
         <div>
           <h1 className="text-3xl font-bold text-foreground mb-2">Car Health Overview</h1>
           <p className="text-muted-foreground">
-            Monitor your vehicle's health, maintenance needs, and performance metrics
+            Monitor your Vehicle's Health, Maintenance Needs, and Performance Metrics
           </p>
         </div>
 

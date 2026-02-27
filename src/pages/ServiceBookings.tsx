@@ -135,7 +135,7 @@ export default function ServiceBookings() {
         <div>
           <h1 className="text-3xl font-bold text-foreground">Service Booking Management</h1>
           <p className="text-muted-foreground mt-2">
-            Comprehensive analytics and management for all service bookings
+            Comprehensive Analytics and Management for all Service Bookings
           </p>
         </div>
 

@@ -33,8 +33,8 @@ const DigitalTwin = () => {
         {/* Header */}
         <div className="flex items-center justify-between">
           <div>
-            <h2 className="text-3xl font-bold tracking-tight">EV Digital Twin Dashboard</h2>
-            <p className="text-muted-foreground">Real-time vehicle intelligence & predictive analytics</p>
+            <h2 className="text-3xl font-bold tracking-tight">Vehicle Intelligence Platform</h2>
+            <p className="text-muted-foreground">AI-Powered Vehicle Intelligence & Predictive Decision System</p>
           </div>
           <Button
             variant={isFailureMode ? "destructive" : "outline"}

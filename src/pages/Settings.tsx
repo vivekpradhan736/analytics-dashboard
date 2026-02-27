@@ -393,7 +393,7 @@ export default function Settings() {
         <div>
           <h1 className="text-3xl font-bold text-foreground">Settings</h1>
           <p className="text-muted-foreground mt-2">
-            Customize your Car Health Analytics Dashboard experience
+            Customize your Car Health Analytics Dashboard Experience
           </p>
         </div>
 

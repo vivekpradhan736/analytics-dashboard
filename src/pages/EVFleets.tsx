@@ -274,7 +274,7 @@ const EVFleets = () => {
           <div>
             <h2 className="text-3xl font-bold tracking-tight">EV Fleet Management</h2>
             <p className="text-muted-foreground">
-              Battery optimization and sustainable fleet operations
+              Battery Optimization and Sustainable Fleet Operations
             </p>
           </div>
           <div className="flex sm:flex-row flex-col gap-2">

@@ -90,7 +90,7 @@ export default function Analytics() {
           <div>
             <h1 className="text-3xl font-bold text-foreground">Advanced Analytics</h1>
             <p className="text-muted-foreground mt-2">
-              Deep insights into your vehicle's performance, efficiency, and health trends
+              Deep Insights into your Vehicle's Performance, Efficiency, and Health Trends
             </p>
           </div>
           <Button className="flex items-center gap-2">

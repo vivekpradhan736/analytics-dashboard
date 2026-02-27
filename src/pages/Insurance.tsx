@@ -103,7 +103,7 @@ const Insurance = () => {
           <div>
             <h2 className="text-3xl font-bold tracking-tight">Insurance Analytics</h2>
             <p className="text-muted-foreground">
-              OBD-powered claim verification, risk assessment, and fraud detection
+              OBD-Powered Claim Verification, Risk Assessment, and Fraud Detection
             </p>
           </div>
           <div className="flex sm:flex-row flex-col gap-2">

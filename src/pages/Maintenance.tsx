@@ -113,7 +113,7 @@ export default function Maintenance() {
         <div>
           <h1 className="text-3xl font-bold text-foreground">Maintenance Center</h1>
           <p className="text-muted-foreground mt-2">
-            Stay ahead of your vehicle's maintenance needs with predictive scheduling
+            Stay ahead of your Vehicle's Maintenance Needs with Predictive Scheduling
           </p>
         </div>
 

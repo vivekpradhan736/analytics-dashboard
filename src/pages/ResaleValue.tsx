@@ -100,7 +100,7 @@ export default function ResaleValue() {
         <div>
           <h1 className="text-3xl font-bold text-foreground">Resale Value Analysis</h1>
           <p className="text-muted-foreground mt-2">
-            Maximize your vehicle's value with data-driven insights and recommendations
+            Maximize your Vehicle's Value with Data-Driven Insights and Recommendations
           </p>
         </div>
 

@@ -31,15 +31,15 @@ const menuItems = [
   { title: "Dashboard", url: "/", icon: LayoutDashboard },
   { title: "Health Analysis", url: "/health", icon: AlertTriangle },
   { title: "Maintenance", url: "/maintenance", icon: Wrench },
-  { title: "Service Bookings", url: "/service-bookings", icon: Calendar },
-  { title: "Resale Value", url: "/resale", icon: IndianRupee },
+  // { title: "Service Bookings", url: "/service-bookings", icon: Calendar },
+  // { title: "Resale Value", url: "/resale", icon: IndianRupee },
   { title: "Analytics", url: "/analytics", icon: BarChart3 },
 ];
 
 const b2bItems = [
   { title: "Digital Twin", url: "/digital-twin", icon: Box },
   // { title: "Fleet & Logistics", url: "/fleet-logistics", icon: Truck },
-  { title: "Insurance", url: "/insurance", icon: Shield },
+  // { title: "Insurance", url: "/insurance", icon: Shield },
   { title: "OEM & Dealerships", url: "/oem-dealerships", icon: Building2 },
   { title: "EV Fleets", url: "/ev-fleets", icon: Battery },
 ];
@@ -80,10 +80,28 @@ export function DashboardSidebar() {
             )}
           </div>
         </div>
+        {/* B2B Features */}
+        <SidebarGroup>
+          <SidebarGroupLabel>MAIN MENU</SidebarGroupLabel>
+          <SidebarGroupContent>
+            <SidebarMenu>
+              {b2bItems.map((item) => (
+                <SidebarMenuItem key={item.title}>
+                  <SidebarMenuButton asChild>
+                    <NavLink to={item.url} className={`getNavCls ${currentPath === item.url ? "bg-[#fbefef]" : ""}`}>
+                      <item.icon className={`w-5 h-5 ${currentPath === item.url ? "text-[#d36262]" : "text-gray-500"}`} />
+                      {!collapsed && <span className={`text-sm ${currentPath === item.url ? "text-[#d36262]" : "text-gray-500"}`}>{item.title}</span>}
+                    </NavLink>
+                  </SidebarMenuButton>
+                </SidebarMenuItem>
+              ))}
+            </SidebarMenu>
+          </SidebarGroupContent>
+        </SidebarGroup>
 
         {/* Main Menu */}
         <SidebarGroup>
-          <SidebarGroupLabel>MAIN MENU</SidebarGroupLabel>
+          {/* <SidebarGroupLabel>MAIN MENU</SidebarGroupLabel> */}
           <SidebarGroupContent>
             <SidebarMenu>
               {menuItems.map((item) => (
@@ -100,24 +118,6 @@ export function DashboardSidebar() {
           </SidebarGroupContent>
         </SidebarGroup>
 
-        {/* B2B Features */}
-        <SidebarGroup>
-          {/* <SidebarGroupLabel>B2B SOLUTIONS</SidebarGroupLabel> */}
-          <SidebarGroupContent>
-            <SidebarMenu>
-              {b2bItems.map((item) => (
-                <SidebarMenuItem key={item.title}>
-                  <SidebarMenuButton asChild>
-                    <NavLink to={item.url} className={`getNavCls ${currentPath === item.url ? "bg-[#fbefef]" : ""}`}>
-                      <item.icon className={`w-5 h-5 ${currentPath === item.url ? "text-[#d36262]" : "text-gray-500"}`} />
-                      {!collapsed && <span className={`text-sm ${currentPath === item.url ? "text-[#d36262]" : "text-gray-500"}`}>{item.title}</span>}
-                    </NavLink>
-                  </SidebarMenuButton>
-                </SidebarMenuItem>
-              ))}
-            </SidebarMenu>
-          </SidebarGroupContent>
-        </SidebarGroup>
 
         {/* Others Menu */}
         <SidebarGroup>

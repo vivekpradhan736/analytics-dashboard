@@ -128,7 +128,7 @@ const OEMDealerships = () => {
           <div>
             <h2 className="text-3xl font-bold tracking-tight">OEM & Dealership Management</h2>
             <p className="text-muted-foreground">
-              Proactive customer engagement and inventory optimization
+              Proactive Customer Engagement and Inventory Optimization
             </p>
           </div>
           <div className="flex sm:flex-row flex-col gap-2">
