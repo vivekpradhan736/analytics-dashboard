@@ -64,7 +64,7 @@ const DigitalTwin = () => {
         </div>
 
         {/* Main 3-column grid */}
-        <div className="grid grid-cols-1 lg:grid-cols-[280px_1fr_280px] gap-4">
+        <div className="grid grid-cols-1 lg:grid-cols-[210px_1fr_210px] gap-4">
           {/* LEFT - Vehicle Health */}
           <div className="space-y-3">
             <div className="flex items-center gap-2">

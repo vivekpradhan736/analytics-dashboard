@@ -14,7 +14,7 @@ function VehicleModel() {
   // });
 
   return (
-    <group ref={ref} scale={2.4} position={[0, -1, 0]} rotation={[0, Math.PI / 1.5, 0]}>
+    <group ref={ref} scale={1.4} position={[0, -1, 0]} rotation={[0, Math.PI / 1.5, 0]}>
       <primitive object={scene} />
     </group>
   );

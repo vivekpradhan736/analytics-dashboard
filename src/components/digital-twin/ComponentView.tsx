@@ -113,7 +113,7 @@ export function ComponentView({ telemetry, isFailureMode, className }: Component
           <GLBComponent
             url="/models/battery.glb"
             position={[-2, 0, 0]}
-            scale={1.5}
+            scale={0.8}
             selected={selectedComponent === "battery"}
             onClick={() => setSelectedComponent("battery")}
             label="BATTERY PACK"
@@ -122,7 +122,7 @@ export function ComponentView({ telemetry, isFailureMode, className }: Component
           <GLBComponent
             url="/models/mono_motor.glb"
             position={[2, 0, 0]}
-            scale={1.5}
+            scale={0.8}
             selected={selectedComponent === "motor"}
             onClick={() => setSelectedComponent("motor")}
             label="HUB MOTOR"
@@ -131,7 +131,7 @@ export function ComponentView({ telemetry, isFailureMode, className }: Component
           <GLBComponent
             url="/models/controller.glb"
             position={[0, -1.2, 0]}
-            scale={1.5}
+            scale={0.8}
             selected={selectedComponent === "controller"}
             onClick={() => setSelectedComponent("controller")}
             label="CONTROLLER"
